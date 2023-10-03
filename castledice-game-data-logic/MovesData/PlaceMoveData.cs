@@ -3,6 +3,7 @@ using castledice_game_logic.MovesLogic;
 
 namespace castledice_game_data_logic.MovesData;
 
+[Serializable]
 public class PlaceMoveData : MoveData
 {
     public PlacementType PlacementType { get; set; }
