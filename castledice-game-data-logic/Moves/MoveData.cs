@@ -1,7 +1,7 @@
 ﻿using castledice_game_logic.Math;
 using castledice_game_logic.MovesLogic;
 
-namespace castledice_game_data_logic.MovesData;
+namespace castledice_game_data_logic.Moves;
 
 [Serializable]
 public abstract class MoveData

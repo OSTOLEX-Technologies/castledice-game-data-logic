@@ -1,4 +1,4 @@
-﻿namespace castledice_game_data_logic.ContentData;
+﻿namespace castledice_game_data_logic.Content;
 
 [Serializable]
 public class CastleData : ContentData
