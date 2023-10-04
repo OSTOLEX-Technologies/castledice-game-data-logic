@@ -8,4 +8,10 @@
         <LangVersion>11</LangVersion>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Reference Include="castledice-game-logic">
+        <HintPath>..\..\castledice-game-logic\castledice-game-logic\bin\Debug\netstandard2.1\castledice-game-logic.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>
