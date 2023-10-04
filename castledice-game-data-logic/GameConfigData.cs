@@ -13,7 +13,6 @@ public class GameConfigData
     public List<ContentData> GeneratedContent { get; } = new();
     public int KnightHealth { get; set; }
     public int KnightPlaceCost { get; set; }
-    public int FreeCastleDurability { get; set; }
     public int CastleCaptureCost { get; set; }
     public List<PlayerDeckData> Decks { get; } = new();
 }
