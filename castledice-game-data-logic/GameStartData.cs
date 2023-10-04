@@ -6,8 +6,6 @@ namespace castledice_game_data_logic;
 [Serializable]
 public class GameStartData
 {
-    public int BoardLenght { get; set; }
-    public int BoardWidth { get; set; }
     public CellType CellType { get; set; }
     public bool[,] CellsPresence { get; set; }
     public List<ContentData> GeneratedContent { get; } = new();
