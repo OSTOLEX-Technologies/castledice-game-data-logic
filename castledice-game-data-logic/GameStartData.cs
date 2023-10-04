@@ -4,7 +4,7 @@ using castledice_game_logic;
 namespace castledice_game_data_logic;
 
 [Serializable]
-public class GameConfigData
+public class GameStartData
 {
     public int BoardLenght { get; set; }
     public int BoardWidth { get; set; }
