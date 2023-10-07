@@ -7,11 +7,11 @@ public class CastleData : ContentData
 {
     public override ContentDataType Type => ContentDataType.Castle;
     
-    public int CastleCaptureHitCost { get; set; }
-    public int FreeDurability { get; set; }
-    public int DefaultDurability { get; set; }
-    public int Durability { get; set; }
-    public int OwnerId { get; set; }
+    public int CastleCaptureHitCost { get;  }
+    public int FreeDurability { get; }
+    public int DefaultDurability { get; }
+    public int Durability { get; }
+    public int OwnerId { get; }
 
     public CastleData(Vector2Int position, int castleCaptureHitCost, int freeDurability, int defaultDurability, int durability, int ownerId) : base(position)
     {
@@ -20,5 +20,23 @@ public class CastleData : ContentData
         DefaultDurability = defaultDurability;
         Durability = durability;
         OwnerId = ownerId;
+    }
+
+    protected bool Equals(CastleData other)
+    {
+        return base.Equals(other) && CastleCaptureHitCost == other.CastleCaptureHitCost && FreeDurability == other.FreeDurability && DefaultDurability == other.DefaultDurability && Durability == other.Durability && OwnerId == other.OwnerId;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((CastleData)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(base.GetHashCode(), CastleCaptureHitCost, FreeDurability, DefaultDurability, Durability, OwnerId);
     }
 }
