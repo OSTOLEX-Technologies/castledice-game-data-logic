@@ -9,4 +9,10 @@ public abstract class MoveData
     public int PlayerId { get; set; }
     public Vector2Int Position { get; set; }
     public abstract MoveType MoveType { get; }
+
+    protected MoveData(int playerId, Vector2Int position)
+    {
+        PlayerId = playerId;
+        Position = position;
+    }
 }

@@ -6,5 +6,11 @@ namespace castledice_game_data_logic;
 public class PlayerDeckData
 {
     public int PlayerId { get; set; }
-    public List<PlacementType> AvailablePlacements { get; } = new();
+    public List<PlacementType> AvailablePlacements { get; set; }
+
+    public PlayerDeckData(int playerId, List<PlacementType> availablePlacements)
+    {
+        PlayerId = playerId;
+        AvailablePlacements = availablePlacements;
+    }
 }
