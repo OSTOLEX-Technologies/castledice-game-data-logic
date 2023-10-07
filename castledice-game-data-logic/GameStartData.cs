@@ -1,4 +1,5 @@
 ﻿using castledice_game_data_logic.Content;
+using castledice_game_data_logic.Extensions;
 using castledice_game_logic;
 
 namespace castledice_game_data_logic;
@@ -37,12 +38,12 @@ public class GameStartData
         return BoardLength == other.BoardLength && 
                BoardWidth == other.BoardWidth && 
                CellType == other.CellType && 
-               CellsPresence.Equals(other.CellsPresence) && 
-               GeneratedContent.Equals(other.GeneratedContent) && 
+               CellsPresence.SequenceEquals(other.CellsPresence) && 
+               GeneratedContent.SequenceEqual(other.GeneratedContent) && 
                KnightHealth == other.KnightHealth && 
                KnightPlaceCost == other.KnightPlaceCost && 
-               PlayersIds.Equals(other.PlayersIds) && 
-               Decks.Equals(other.Decks);
+               PlayersIds.SequenceEqual(other.PlayersIds) && 
+               Decks.SequenceEqual(other.Decks);
     }
 
     public override bool Equals(object? obj)
