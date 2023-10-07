@@ -6,6 +6,8 @@ namespace castledice_game_data_logic;
 [Serializable]
 public class GameStartData
 {
+    public int BoardLength { get; set; }
+    public int BoardWidth { get; set; }
     public CellType CellType { get; set; }
     public bool[,] CellsPresence { get; set; }
     public List<ContentData> GeneratedContent { get; set; }
@@ -17,8 +19,10 @@ public class GameStartData
     public List<int> PlayersIds { get; set; }
     public List<PlayerDeckData> Decks { get; set; }
 
-    public GameStartData(CellType cellType, bool[,] cellsPresence, List<ContentData> generatedContent, int knightHealth, int knightPlaceCost, List<int> playersIds, List<PlayerDeckData> decks)
+    public GameStartData(int boardLength, int boardWidth, CellType cellType, bool[,] cellsPresence, List<ContentData> generatedContent, int knightHealth, int knightPlaceCost, List<int> playersIds, List<PlayerDeckData> decks)
     {
+        BoardLength = boardLength;
+        BoardWidth = boardWidth;
         CellType = cellType;
         CellsPresence = cellsPresence;
         GeneratedContent = generatedContent;
