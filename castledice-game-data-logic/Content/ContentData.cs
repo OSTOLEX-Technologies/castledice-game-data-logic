@@ -13,6 +13,8 @@ public abstract class ContentData
         Position = position;
     }
 
+    public abstract T Accept<T>(IContentDataVisitor<T> visitor);
+
     protected bool Equals(ContentData other)
     {
         return Position.Equals(other.Position) && Type == other.Type;

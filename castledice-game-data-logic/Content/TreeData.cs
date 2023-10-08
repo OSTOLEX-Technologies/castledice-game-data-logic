@@ -3,7 +3,7 @@
 namespace castledice_game_data_logic.Content;
 
 [Serializable]
-public class TreeData : ContentData
+public sealed class TreeData : ContentData
 {
     public override ContentDataType Type => ContentDataType.Tree;
     
@@ -19,6 +19,11 @@ public class TreeData : ContentData
     protected bool Equals(TreeData other)
     {
         return base.Equals(other) && RemoveCost == other.RemoveCost && CanBeRemoved == other.CanBeRemoved;
+    }
+
+    public override T Accept<T>(IContentDataVisitor<T> visitor)
+    {
+        return visitor.VisitTreeData(this);
     }
 
     public override bool Equals(object? obj)

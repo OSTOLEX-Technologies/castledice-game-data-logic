@@ -3,7 +3,7 @@
 namespace castledice_game_data_logic.Content;
 
 [Serializable]
-public class CastleData : ContentData
+public sealed class CastleData : ContentData
 {
     public override ContentDataType Type => ContentDataType.Castle;
     
@@ -25,6 +25,11 @@ public class CastleData : ContentData
     protected bool Equals(CastleData other)
     {
         return base.Equals(other) && CastleCaptureHitCost == other.CastleCaptureHitCost && FreeDurability == other.FreeDurability && DefaultDurability == other.DefaultDurability && Durability == other.Durability && OwnerId == other.OwnerId;
+    }
+
+    public override T Accept<T>(IContentDataVisitor<T> visitor)
+    {
+        return visitor.VisitCastleData(this);
     }
 
     public override bool Equals(object? obj)
