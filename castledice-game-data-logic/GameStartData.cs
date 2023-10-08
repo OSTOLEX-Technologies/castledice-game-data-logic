@@ -5,7 +5,7 @@ using castledice_game_logic;
 namespace castledice_game_data_logic;
 
 [Serializable]
-public class GameStartData
+public sealed class GameStartData
 {
     public int BoardLength { get; }
     public int BoardWidth { get; }
@@ -38,7 +38,7 @@ public class GameStartData
         return BoardLength == other.BoardLength && 
                BoardWidth == other.BoardWidth && 
                CellType == other.CellType && 
-               CellsPresence.SequenceEquals(other.CellsPresence) && 
+               CellsPresence.Equals2D(other.CellsPresence) && 
                GeneratedContent.SequenceEqual(other.GeneratedContent) && 
                KnightHealth == other.KnightHealth && 
                KnightPlaceCost == other.KnightPlaceCost && 

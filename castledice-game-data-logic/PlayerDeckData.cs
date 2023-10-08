@@ -3,7 +3,7 @@
 namespace castledice_game_data_logic;
 
 [Serializable]
-public class PlayerDeckData
+public sealed class PlayerDeckData
 {
     public int PlayerId { get; }
     public List<PlacementType> AvailablePlacements { get; }
@@ -16,7 +16,7 @@ public class PlayerDeckData
 
     protected bool Equals(PlayerDeckData other)
     {
-        return PlayerId == other.PlayerId && AvailablePlacements.Equals(other.AvailablePlacements);
+        return PlayerId == other.PlayerId && AvailablePlacements.SequenceEqual(other.AvailablePlacements);
     }
 
     public override bool Equals(object? obj)
