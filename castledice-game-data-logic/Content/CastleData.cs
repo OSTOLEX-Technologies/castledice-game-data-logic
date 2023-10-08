@@ -22,7 +22,7 @@ public sealed class CastleData : ContentData
         OwnerId = ownerId;
     }
 
-    protected bool Equals(CastleData other)
+    private bool Equals(CastleData other)
     {
         return base.Equals(other) && CastleCaptureHitCost == other.CastleCaptureHitCost && FreeDurability == other.FreeDurability && DefaultDurability == other.DefaultDurability && Durability == other.Durability && OwnerId == other.OwnerId;
     }

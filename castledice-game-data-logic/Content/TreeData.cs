@@ -16,7 +16,7 @@ public sealed class TreeData : ContentData
         CanBeRemoved = canBeRemoved;
     }
 
-    protected bool Equals(TreeData other)
+    private bool Equals(TreeData other)
     {
         return base.Equals(other) && RemoveCost == other.RemoveCost && CanBeRemoved == other.CanBeRemoved;
     }

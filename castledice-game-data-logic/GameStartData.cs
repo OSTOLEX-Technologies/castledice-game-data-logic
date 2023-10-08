@@ -33,7 +33,7 @@ public sealed class GameStartData
         Decks = decks;
     }
 
-    protected bool Equals(GameStartData other)
+    private bool Equals(GameStartData other)
     {
         return BoardLength == other.BoardLength && 
                BoardWidth == other.BoardWidth && 

@@ -14,7 +14,7 @@ public sealed class PlayerDeckData
         AvailablePlacements = availablePlacements;
     }
 
-    protected bool Equals(PlayerDeckData other)
+    private bool Equals(PlayerDeckData other)
     {
         return PlayerId == other.PlayerId && AvailablePlacements.SequenceEqual(other.AvailablePlacements);
     }
