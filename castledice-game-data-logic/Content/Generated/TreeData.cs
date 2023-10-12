@@ -1,11 +1,11 @@
 ﻿using castledice_game_logic.Math;
 
-namespace castledice_game_data_logic.Content;
+namespace castledice_game_data_logic.Content.Generated;
 
 [Serializable]
-public sealed class TreeData : ContentData
+public sealed class TreeData : GeneratedContentData
 {
-    public override ContentDataType Type => ContentDataType.Tree;
+    public override GeneratedContentDataType Type => GeneratedContentDataType.Tree;
     
     public int RemoveCost { get; }
     public bool CanBeRemoved { get; }

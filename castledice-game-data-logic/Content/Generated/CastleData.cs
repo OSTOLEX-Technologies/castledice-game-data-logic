@@ -1,11 +1,11 @@
 ﻿using castledice_game_logic.Math;
 
-namespace castledice_game_data_logic.Content;
+namespace castledice_game_data_logic.Content.Generated;
 
 [Serializable]
-public sealed class CastleData : ContentData
+public sealed class CastleData : GeneratedContentData
 {
-    public override ContentDataType Type => ContentDataType.Castle;
+    public override GeneratedContentDataType Type => GeneratedContentDataType.Castle;
     
     public int CastleCaptureHitCost { get;  }
     public int FreeDurability { get; }

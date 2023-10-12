@@ -1,4 +1,6 @@
 ﻿using castledice_game_data_logic.Content;
+using castledice_game_data_logic.Content.Generated;
+using castledice_game_data_logic.Content.Placeable;
 using castledice_game_data_logic.Extensions;
 using castledice_game_logic;
 
@@ -11,7 +13,8 @@ public sealed class GameStartData
     public int BoardWidth { get; }
     public CellType CellType { get; }
     public bool[,] CellsPresence { get; }
-    public List<ContentData> GeneratedContent { get; }
+    public List<GeneratedContentData> GeneratedContent { get; }
+    public List<PlaceableContentData> PlaceablesConfigs { get; }
     public int KnightHealth { get; }
     public int KnightPlaceCost { get; }
     /// <summary>
@@ -20,13 +23,23 @@ public sealed class GameStartData
     public List<int> PlayersIds { get; }
     public List<PlayerDeckData> Decks { get; }
 
-    public GameStartData(int boardLength, int boardWidth, CellType cellType, bool[,] cellsPresence, List<ContentData> generatedContent, int knightHealth, int knightPlaceCost, List<int> playersIds, List<PlayerDeckData> decks)
+    public GameStartData(int boardLength, 
+        int boardWidth, 
+        CellType cellType, 
+        bool[,] cellsPresence, 
+        List<GeneratedContentData> generatedContent,
+        List<PlaceableContentData> placeablesConfigs,
+        int knightHealth, 
+        int knightPlaceCost, 
+        List<int> playersIds, 
+        List<PlayerDeckData> decks)
     {
         BoardLength = boardLength;
         BoardWidth = boardWidth;
         CellType = cellType;
         CellsPresence = cellsPresence;
         GeneratedContent = generatedContent;
+        PlaceablesConfigs = placeablesConfigs;
         KnightHealth = knightHealth;
         KnightPlaceCost = knightPlaceCost;
         PlayersIds = playersIds;
@@ -40,6 +53,7 @@ public sealed class GameStartData
                CellType == other.CellType && 
                CellsPresence.Equals2D(other.CellsPresence) && 
                GeneratedContent.SequenceEqual(other.GeneratedContent) && 
+               PlaceablesConfigs.SequenceEqual(other.PlaceablesConfigs) &&
                KnightHealth == other.KnightHealth && 
                KnightPlaceCost == other.KnightPlaceCost && 
                PlayersIds.SequenceEqual(other.PlayersIds) && 
@@ -62,6 +76,7 @@ public sealed class GameStartData
         hashCode.Add((int)CellType);
         hashCode.Add(CellsPresence);
         hashCode.Add(GeneratedContent);
+        hashCode.Add(PlaceablesConfigs);
         hashCode.Add(KnightHealth);
         hashCode.Add(KnightPlaceCost);
         hashCode.Add(PlayersIds);

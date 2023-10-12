@@ -16,41 +16,45 @@ public class EqualsTests
 
     public static IEnumerable<object[]> EqualsTestCases()
     {
-        yield return new object[]
+        yield return new[]
         {
-            () => GetCastleData()
+            GetCastleData
         };
-        yield return new object[]
+        yield return new[]
         {
-            () => GetTreeData()
+            GetTreeData
         };
-        yield return new object[]
+        yield return new[]
         {
-            () => GetCaptureMoveData()
+            GetCaptureMoveData
         };
-        yield return new object[]
+        yield return new[]
         {
-            () => GetPlaceMoveData()
+            GetPlaceMoveData
         };
-        yield return new object[]
+        yield return new[]
         {
-            () => GetRemoveMoveData()
+            GetRemoveMoveData
         };
-        yield return new object[]
+        yield return new[]
         {
-            () => GetReplaceMoveData()
+            GetReplaceMoveData
         };
-        yield return new object[]
+        yield return new[]
         {
-            () => GetUpgradeMoveData()
+            GetUpgradeMoveData
         };
-        yield return new object[]
+        yield return new[]
         {
-            () => GetGameStartData()
+            GetGameStartData
         };
-        yield return new object[]
+        yield return new[]
         {
-            () => GetPlayerDeckData()
+            GetPlayerDeckData
+        };
+        yield return new[]
+        {
+            GetKnightData
         };
     }
 }
