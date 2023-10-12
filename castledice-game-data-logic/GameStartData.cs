@@ -15,8 +15,7 @@ public sealed class GameStartData
     public bool[,] CellsPresence { get; }
     public List<GeneratedContentData> GeneratedContent { get; }
     public List<PlaceableContentData> PlaceablesConfigs { get; }
-    public int KnightHealth { get; }
-    public int KnightPlaceCost { get; }
+    
     /// <summary>
     /// This field represents ids of participants and also their turns order.
     /// </summary>
@@ -29,8 +28,6 @@ public sealed class GameStartData
         bool[,] cellsPresence, 
         List<GeneratedContentData> generatedContent,
         List<PlaceableContentData> placeablesConfigs,
-        int knightHealth, 
-        int knightPlaceCost, 
         List<int> playersIds, 
         List<PlayerDeckData> decks)
     {
@@ -40,8 +37,6 @@ public sealed class GameStartData
         CellsPresence = cellsPresence;
         GeneratedContent = generatedContent;
         PlaceablesConfigs = placeablesConfigs;
-        KnightHealth = knightHealth;
-        KnightPlaceCost = knightPlaceCost;
         PlayersIds = playersIds;
         Decks = decks;
     }
@@ -54,8 +49,6 @@ public sealed class GameStartData
                CellsPresence.Equals2D(other.CellsPresence) && 
                GeneratedContent.SequenceEqual(other.GeneratedContent) && 
                PlaceablesConfigs.SequenceEqual(other.PlaceablesConfigs) &&
-               KnightHealth == other.KnightHealth && 
-               KnightPlaceCost == other.KnightPlaceCost && 
                PlayersIds.SequenceEqual(other.PlayersIds) && 
                Decks.SequenceEqual(other.Decks);
     }
@@ -77,8 +70,6 @@ public sealed class GameStartData
         hashCode.Add(CellsPresence);
         hashCode.Add(GeneratedContent);
         hashCode.Add(PlaceablesConfigs);
-        hashCode.Add(KnightHealth);
-        hashCode.Add(KnightPlaceCost);
         hashCode.Add(PlayersIds);
         hashCode.Add(Decks);
         return hashCode.ToHashCode();
