@@ -11,7 +11,7 @@ public class EqualsTests
         var instance1 = instanceProviderFunction();
         var instance2 = instanceProviderFunction();
         
-        Assert.True(instance1.Equals(instance2));
+        Assert.Equal(instance1, instance2);
     }
 
     public static IEnumerable<object[]> EqualsTestCases()
@@ -55,6 +55,10 @@ public class EqualsTests
         yield return new[]
         {
             GetKnightData
+        };
+        yield return new[]
+        {
+            GetGameData
         };
     }
 }

@@ -1,5 +1,5 @@
-﻿using castledice_game_data_logic;
-using castledice_game_data_logic.Content;
+﻿using System.Globalization;
+using castledice_game_data_logic;
 using castledice_game_data_logic.Content.Generated;
 using castledice_game_data_logic.Content.Placeable;
 using castledice_game_data_logic.Moves;
@@ -35,6 +35,11 @@ public static class ObjectCreationUtility
         };
         var data = new GameStartData(boardLength, boardWidth, cellType, cellsPresence, generatedContent, placeablesConfigs, playerIds, playerDecks);
         return data;
+    }
+
+    public static GameData GetGameData()
+    {
+        return new GameData(1, "someconfig", DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture), DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture), 1, new List<int>{1, 2}, "somehistory");
     }
 
     public static KnightData GetKnightData()
