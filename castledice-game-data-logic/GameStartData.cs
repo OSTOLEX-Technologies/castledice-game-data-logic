@@ -9,6 +9,7 @@ namespace castledice_game_data_logic;
 [Serializable]
 public sealed class GameStartData
 {
+    public string Version { get; }
     public int BoardLength { get; }
     public int BoardWidth { get; }
     public CellType CellType { get; }
@@ -22,7 +23,8 @@ public sealed class GameStartData
     public List<int> PlayersIds { get; }
     public List<PlayerDeckData> Decks { get; }
 
-    public GameStartData(int boardLength, 
+    public GameStartData(string version,
+        int boardLength, 
         int boardWidth, 
         CellType cellType, 
         bool[,] cellsPresence, 
@@ -31,6 +33,7 @@ public sealed class GameStartData
         List<int> playersIds, 
         List<PlayerDeckData> decks)
     {
+        Version = version;
         BoardLength = boardLength;
         BoardWidth = boardWidth;
         CellType = cellType;
@@ -43,7 +46,8 @@ public sealed class GameStartData
 
     private bool Equals(GameStartData other)
     {
-        return BoardLength == other.BoardLength && 
+        return Version == other.Version && 
+               BoardLength == other.BoardLength && 
                BoardWidth == other.BoardWidth && 
                CellType == other.CellType && 
                CellsPresence.Equals2D(other.CellsPresence) && 
@@ -64,6 +68,7 @@ public sealed class GameStartData
     public override int GetHashCode()
     {
         var hashCode = new HashCode();
+        hashCode.Add(Version);
         hashCode.Add(BoardLength);
         hashCode.Add(BoardWidth);
         hashCode.Add((int)CellType);
