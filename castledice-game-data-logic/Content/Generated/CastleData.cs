@@ -1,11 +1,11 @@
 ﻿using castledice_game_logic.Math;
 
-namespace castledice_game_data_logic.Content;
+namespace castledice_game_data_logic.Content.Generated;
 
 [Serializable]
-public class CastleData : ContentData
+public sealed class CastleData : GeneratedContentData
 {
-    public override ContentDataType Type => ContentDataType.Castle;
+    public override GeneratedContentDataType Type => GeneratedContentDataType.Castle;
     
     public int CastleCaptureHitCost { get;  }
     public int FreeDurability { get; }
@@ -22,9 +22,14 @@ public class CastleData : ContentData
         OwnerId = ownerId;
     }
 
-    protected bool Equals(CastleData other)
+    private bool Equals(CastleData other)
     {
         return base.Equals(other) && CastleCaptureHitCost == other.CastleCaptureHitCost && FreeDurability == other.FreeDurability && DefaultDurability == other.DefaultDurability && Durability == other.Durability && OwnerId == other.OwnerId;
+    }
+
+    public override T Accept<T>(IContentDataVisitor<T> visitor)
+    {
+        return visitor.VisitCastleData(this);
     }
 
     public override bool Equals(object? obj)
