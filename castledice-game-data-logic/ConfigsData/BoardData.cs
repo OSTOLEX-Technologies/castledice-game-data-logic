@@ -4,7 +4,7 @@ using castledice_game_logic;
 
 namespace castledice_game_data_logic.Content.Placeable;
 
-public sealed class BoardConfigData
+public sealed class BoardData
 {
     public int BoardLength { get; }
     public int BoardWidth { get; }
@@ -12,7 +12,7 @@ public sealed class BoardConfigData
     public bool[,] CellsPresence { get; }
     public List<GeneratedContentData> GeneratedContent { get; }
 
-    public BoardConfigData(int boardLength, int boardWidth, CellType cellType, bool[,] cellsPresence, List<GeneratedContentData> generatedContent)
+    public BoardData(int boardLength, int boardWidth, CellType cellType, bool[,] cellsPresence, List<GeneratedContentData> generatedContent)
     {
         BoardLength = boardLength;
         BoardWidth = boardWidth;
@@ -21,7 +21,7 @@ public sealed class BoardConfigData
         GeneratedContent = generatedContent;
     }
 
-    private bool Equals(BoardConfigData other)
+    private bool Equals(BoardData other)
     {
         return BoardLength == other.BoardLength &&
                BoardWidth == other.BoardWidth &&
@@ -32,7 +32,7 @@ public sealed class BoardConfigData
 
     public override bool Equals(object? obj)
     {
-        return ReferenceEquals(this, obj) || obj is BoardConfigData other && Equals(other);
+        return ReferenceEquals(this, obj) || obj is BoardData other && Equals(other);
     }
 
     public override int GetHashCode()

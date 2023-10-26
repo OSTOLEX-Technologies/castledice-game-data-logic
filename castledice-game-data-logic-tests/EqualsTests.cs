@@ -62,7 +62,7 @@ public class EqualsTests
         };
         yield return new[]
         {
-            GetBoardConfigData
+            GetBoardData
         };
     }
 }

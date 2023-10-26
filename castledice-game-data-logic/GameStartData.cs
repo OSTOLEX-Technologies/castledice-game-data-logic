@@ -10,7 +10,7 @@ namespace castledice_game_data_logic;
 public sealed class GameStartData
 {
     public string Version { get; }
-    public BoardConfigData BoardConfigData { get; }
+    public BoardData BoardData { get; }
 
     public PlaceablesConfigData PlaceablesConfigData { get; }
     
@@ -21,7 +21,7 @@ public sealed class GameStartData
     public List<PlayerDeckData> Decks { get; }
 
     public GameStartData(string version,
-        BoardConfigData boardConfigData,
+        BoardData boardData,
         PlaceablesConfigData placeablesConfigData,
         List<int> playersIds, 
         List<PlayerDeckData> decks)
@@ -30,13 +30,13 @@ public sealed class GameStartData
         PlaceablesConfigData = placeablesConfigData;
         PlayersIds = playersIds;
         Decks = decks;
-        BoardConfigData = boardConfigData;
+        BoardData = boardData;
     }
 
     private bool Equals(GameStartData other)
     {
         return Version == other.Version && 
-               BoardConfigData.Equals(other.BoardConfigData)  && 
+               BoardData.Equals(other.BoardData)  && 
                PlaceablesConfigData.Equals(other.PlaceablesConfigData) &&
                PlayersIds.SequenceEqual(other.PlayersIds) && 
                Decks.SequenceEqual(other.Decks);
