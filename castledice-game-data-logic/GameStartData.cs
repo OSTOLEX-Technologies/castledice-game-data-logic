@@ -15,7 +15,7 @@ public sealed class GameStartData
     public CellType CellType { get; }
     public bool[,] CellsPresence { get; }
     public List<GeneratedContentData> GeneratedContent { get; }
-    public List<PlaceableContentData> PlaceablesConfigs { get; }
+    public List<PlaceableConfigData> PlaceablesConfigs { get; }
     
     /// <summary>
     /// This field represents ids of participants and also their turns order.
@@ -29,7 +29,7 @@ public sealed class GameStartData
         CellType cellType, 
         bool[,] cellsPresence, 
         List<GeneratedContentData> generatedContent,
-        List<PlaceableContentData> placeablesConfigs,
+        List<PlaceableConfigData> placeablesConfigs,
         List<int> playersIds, 
         List<PlayerDeckData> decks)
     {

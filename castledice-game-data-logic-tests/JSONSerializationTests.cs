@@ -21,12 +21,12 @@ public class JSONSerializationTests
         yield return new object[]
         {
             GetGameStartData(),
-            new JsonConverter[] { new GeneratedContentDataConverter(), new PlaceableContentDataConverter() }
+            new JsonConverter[] { new GeneratedContentDataConverter(), new PlaceableConfigDataConverter() }
         };
         yield return new object[]
         {
             GetKnightData(),
-            new JsonConverter[] { new PlaceableContentDataConverter() }
+            new JsonConverter[] { new PlaceableConfigDataConverter() }
         };
         yield return new object[]
         {

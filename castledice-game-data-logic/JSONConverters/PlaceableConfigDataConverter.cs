@@ -5,22 +5,22 @@ using Newtonsoft.Json.Linq;
 
 namespace castledice_game_data_logic.JSONConverters;
 
-public class PlaceableContentDataConverter : JsonConverter<PlaceableContentData>
+public class PlaceableConfigDataConverter : JsonConverter<PlaceableConfigData>
 {
-    public override void WriteJson(JsonWriter writer, PlaceableContentData? value, JsonSerializer serializer)
+    public override void WriteJson(JsonWriter writer, PlaceableConfigData? value, JsonSerializer serializer)
     {
         var defaultSerializer = new JsonSerializer();
         defaultSerializer.Serialize(writer, value);
     }
 
-    public override PlaceableContentData? ReadJson(JsonReader reader, Type objectType, PlaceableContentData? existingValue,
+    public override PlaceableConfigData? ReadJson(JsonReader reader, Type objectType, PlaceableConfigData? existingValue,
         bool hasExistingValue, JsonSerializer serializer)
     {
         var jobj = JObject.ReadFrom(reader);
         var type = jobj["Type"].ToObject<PlacementType>();
         return type switch
         {
-            PlacementType.Knight => jobj.ToObject<KnightData>(),
+            PlacementType.Knight => jobj.ToObject<KnightConfigData>(),
             _ => throw new ArgumentException("Unfamiliar PlacementType: " + type)
         };
     }

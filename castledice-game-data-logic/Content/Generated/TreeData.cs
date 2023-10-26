@@ -21,7 +21,7 @@ public sealed class TreeData : GeneratedContentData
         return base.Equals(other) && RemoveCost == other.RemoveCost && CanBeRemoved == other.CanBeRemoved;
     }
 
-    public override T Accept<T>(IContentDataVisitor<T> visitor)
+    public override T Accept<T>(IGeneratedContentDataVisitor<T> visitor)
     {
         return visitor.VisitTreeData(this);
     }

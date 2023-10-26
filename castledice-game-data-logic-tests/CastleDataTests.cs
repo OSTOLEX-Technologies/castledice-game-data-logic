@@ -9,7 +9,7 @@ public class CastleDataTests
     [Fact]
     public void Accept_ShouldCallVisitCastleData_OnVisitor()
     {
-        var visitorMock = new Mock<IContentDataVisitor<int>>();
+        var visitorMock = new Mock<IGeneratedContentDataVisitor<int>>();
         var castleData = GetCastleData();
         
         castleData.Accept(visitorMock.Object);

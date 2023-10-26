@@ -27,7 +27,7 @@ public sealed class CastleData : GeneratedContentData
         return base.Equals(other) && CastleCaptureHitCost == other.CastleCaptureHitCost && FreeDurability == other.FreeDurability && DefaultDurability == other.DefaultDurability && Durability == other.Durability && OwnerId == other.OwnerId;
     }
 
-    public override T Accept<T>(IContentDataVisitor<T> visitor)
+    public override T Accept<T>(IGeneratedContentDataVisitor<T> visitor)
     {
         return visitor.VisitCastleData(this);
     }

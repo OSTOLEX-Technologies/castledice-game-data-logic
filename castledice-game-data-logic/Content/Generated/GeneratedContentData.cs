@@ -2,7 +2,7 @@
 
 namespace castledice_game_data_logic.Content.Generated;
 
-public abstract class GeneratedContentData : ContentData
+public abstract class GeneratedContentData
 {
     public Vector2Int Position { get; }
     public abstract GeneratedContentDataType Type { get; }
@@ -11,7 +11,9 @@ public abstract class GeneratedContentData : ContentData
     {
         Position = position;
     }
-
+    
+    public abstract T Accept<T>(IGeneratedContentDataVisitor<T> visitor);
+    
     protected bool Equals(GeneratedContentData other)
     {
         return Position.Equals(other.Position) && Type == other.Type;

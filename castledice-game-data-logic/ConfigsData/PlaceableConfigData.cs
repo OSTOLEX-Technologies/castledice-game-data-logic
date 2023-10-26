@@ -2,11 +2,13 @@
 
 namespace castledice_game_data_logic.Content.Placeable;
 
-public abstract class PlaceableContentData : ContentData
+public abstract class PlaceableConfigData 
 {
     public abstract PlacementType Type { get; }
+    
+    public abstract T Accept<T>(IPlaceableConfigDataVisitor<T> visitor);
 
-    protected bool Equals(PlaceableContentData other)
+    protected bool Equals(PlaceableConfigData other)
     {
         return Type == other.Type;
     }
@@ -16,7 +18,7 @@ public abstract class PlaceableContentData : ContentData
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != this.GetType()) return false;
-        return Equals((PlaceableContentData)obj);
+        return Equals((PlaceableConfigData)obj);
     }
 
     public override int GetHashCode()
