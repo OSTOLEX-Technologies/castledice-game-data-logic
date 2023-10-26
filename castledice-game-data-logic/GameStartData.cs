@@ -15,7 +15,7 @@ public sealed class GameStartData
     public CellType CellType { get; }
     public bool[,] CellsPresence { get; }
     public List<GeneratedContentData> GeneratedContent { get; }
-    public PlaceablesConfigData PlaceablesConfigs { get; }
+    public PlaceablesConfigData PlaceablesConfig { get; }
     
     /// <summary>
     /// This field represents ids of participants and also their turns order.
@@ -29,7 +29,7 @@ public sealed class GameStartData
         CellType cellType, 
         bool[,] cellsPresence, 
         List<GeneratedContentData> generatedContent,
-        PlaceablesConfigData placeablesConfigs,
+        PlaceablesConfigData placeablesConfig,
         List<int> playersIds, 
         List<PlayerDeckData> decks)
     {
@@ -39,7 +39,7 @@ public sealed class GameStartData
         CellType = cellType;
         CellsPresence = cellsPresence;
         GeneratedContent = generatedContent;
-        PlaceablesConfigs = placeablesConfigs;
+        PlaceablesConfig = placeablesConfig;
         PlayersIds = playersIds;
         Decks = decks;
     }
@@ -52,7 +52,7 @@ public sealed class GameStartData
                CellType == other.CellType && 
                CellsPresence.Equals2D(other.CellsPresence) && 
                GeneratedContent.SequenceEqual(other.GeneratedContent) && 
-               PlaceablesConfigs.Equals(other.PlaceablesConfigs) &&
+               PlaceablesConfig.Equals(other.PlaceablesConfig) &&
                PlayersIds.SequenceEqual(other.PlayersIds) && 
                Decks.SequenceEqual(other.Decks);
     }
@@ -74,7 +74,7 @@ public sealed class GameStartData
         hashCode.Add((int)CellType);
         hashCode.Add(CellsPresence);
         hashCode.Add(GeneratedContent);
-        hashCode.Add(PlaceablesConfigs);
+        hashCode.Add(PlaceablesConfig);
         hashCode.Add(PlayersIds);
         hashCode.Add(Decks);
         return hashCode.ToHashCode();
