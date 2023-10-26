@@ -25,10 +25,7 @@ public static class ObjectCreationUtility
             firstCastle, 
             secondCastle
         };
-        var placeablesConfigs = new List<PlaceableConfigData>
-        {
-            new KnightConfigData(1, 2)
-        };
+        var placeablesConfigs = new PlaceablesConfigData(GetKnightConfigData());
         var playerDecks = new List<PlayerDeckData>()
         {
             new(playerIds[0], new List<PlacementType> { PlacementType.Knight }),
@@ -43,7 +40,7 @@ public static class ObjectCreationUtility
         return new GameData(1, "someconfig", DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture), DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture), 1, new List<int>{1, 2}, "somehistory");
     }
 
-    public static KnightConfigData GetKnightData()
+    public static KnightConfigData GetKnightConfigData()
     {
         return new KnightConfigData(1, 2);
     }

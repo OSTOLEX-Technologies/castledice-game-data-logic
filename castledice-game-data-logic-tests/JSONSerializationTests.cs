@@ -21,12 +21,7 @@ public class JSONSerializationTests
         yield return new object[]
         {
             GetGameStartData(),
-            new JsonConverter[] { new GeneratedContentDataConverter(), new PlaceableConfigDataConverter() }
-        };
-        yield return new object[]
-        {
-            GetKnightData(),
-            new JsonConverter[] { new PlaceableConfigDataConverter() }
+            new JsonConverter[] { new GeneratedContentDataConverter() }
         };
         yield return new object[]
         {

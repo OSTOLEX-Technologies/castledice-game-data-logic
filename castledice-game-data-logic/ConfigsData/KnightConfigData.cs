@@ -2,10 +2,8 @@
 
 namespace castledice_game_data_logic.Content.Placeable;
 
-public sealed class KnightConfigData : PlaceableConfigData
+public sealed class KnightConfigData
 {
-    public override PlacementType Type => PlacementType.Knight;
-    
     public int PlacementCost { get; }
     public int Health { get; }
 
@@ -17,25 +15,16 @@ public sealed class KnightConfigData : PlaceableConfigData
 
     private bool Equals(KnightConfigData other)
     {
-        return base.Equals(other) && PlacementCost == other.PlacementCost && Health == other.Health;
+        return PlacementCost == other.PlacementCost && Health == other.Health;
     }
 
     public override bool Equals(object? obj)
     {
-        if (ReferenceEquals(null, obj)) return false;
-        if (ReferenceEquals(this, obj)) return true;
-        if (obj.GetType() != this.GetType()) return false;
-        return Equals((KnightConfigData)obj);
+        return ReferenceEquals(this, obj) || obj is KnightConfigData other && Equals(other);
     }
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(base.GetHashCode(), PlacementCost, Health);
+        return HashCode.Combine(PlacementCost, Health);
     }
-
-    public override T Accept<T>(IPlaceableConfigDataVisitor<T> visitor)
-    {
-        return visitor.VisitKnightConfigData(this);
-    }
-    
 }
