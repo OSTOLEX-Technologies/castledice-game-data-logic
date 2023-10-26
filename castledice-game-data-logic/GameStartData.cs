@@ -10,12 +10,9 @@ namespace castledice_game_data_logic;
 public sealed class GameStartData
 {
     public string Version { get; }
-    public int BoardLength { get; }
-    public int BoardWidth { get; }
-    public CellType CellType { get; }
-    public bool[,] CellsPresence { get; }
-    public List<GeneratedContentData> GeneratedContent { get; }
-    public PlaceablesConfigData PlaceablesConfig { get; }
+    public BoardConfigData BoardConfigData { get; }
+
+    public PlaceablesConfigData PlaceablesConfigData { get; }
     
     /// <summary>
     /// This field represents ids of participants and also their turns order.
@@ -24,35 +21,23 @@ public sealed class GameStartData
     public List<PlayerDeckData> Decks { get; }
 
     public GameStartData(string version,
-        int boardLength, 
-        int boardWidth, 
-        CellType cellType, 
-        bool[,] cellsPresence, 
-        List<GeneratedContentData> generatedContent,
-        PlaceablesConfigData placeablesConfig,
+        BoardConfigData boardConfigData,
+        PlaceablesConfigData placeablesConfigData,
         List<int> playersIds, 
         List<PlayerDeckData> decks)
     {
         Version = version;
-        BoardLength = boardLength;
-        BoardWidth = boardWidth;
-        CellType = cellType;
-        CellsPresence = cellsPresence;
-        GeneratedContent = generatedContent;
-        PlaceablesConfig = placeablesConfig;
+        PlaceablesConfigData = placeablesConfigData;
         PlayersIds = playersIds;
         Decks = decks;
+        BoardConfigData = boardConfigData;
     }
 
     private bool Equals(GameStartData other)
     {
         return Version == other.Version && 
-               BoardLength == other.BoardLength && 
-               BoardWidth == other.BoardWidth && 
-               CellType == other.CellType && 
-               CellsPresence.Equals2D(other.CellsPresence) && 
-               GeneratedContent.SequenceEqual(other.GeneratedContent) && 
-               PlaceablesConfig.Equals(other.PlaceablesConfig) &&
+               BoardConfigData.Equals(other.BoardConfigData)  && 
+               PlaceablesConfigData.Equals(other.PlaceablesConfigData) &&
                PlayersIds.SequenceEqual(other.PlayersIds) && 
                Decks.SequenceEqual(other.Decks);
     }
@@ -69,12 +54,7 @@ public sealed class GameStartData
     {
         var hashCode = new HashCode();
         hashCode.Add(Version);
-        hashCode.Add(BoardLength);
-        hashCode.Add(BoardWidth);
-        hashCode.Add((int)CellType);
-        hashCode.Add(CellsPresence);
-        hashCode.Add(GeneratedContent);
-        hashCode.Add(PlaceablesConfig);
+        hashCode.Add(PlaceablesConfigData);
         hashCode.Add(PlayersIds);
         hashCode.Add(Decks);
         return hashCode.ToHashCode();

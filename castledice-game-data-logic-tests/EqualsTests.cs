@@ -60,5 +60,9 @@ public class EqualsTests
         {
             GetGameData
         };
+        yield return new[]
+        {
+            GetBoardConfigData
+        };
     }
 }
