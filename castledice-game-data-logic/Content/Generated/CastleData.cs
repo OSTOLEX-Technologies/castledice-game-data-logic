@@ -7,24 +7,24 @@ public sealed class CastleData : GeneratedContentData
 {
     public override GeneratedContentDataType Type => GeneratedContentDataType.Castle;
     
-    public int CastleCaptureHitCost { get;  }
-    public int FreeDurability { get; }
-    public int DefaultDurability { get; }
+    public int CaptureHitCost { get;  }
+    public int MaxFreeDurability { get; }
+    public int MaxDurability { get; }
     public int Durability { get; }
     public int OwnerId { get; }
 
-    public CastleData(Vector2Int position, int castleCaptureHitCost, int freeDurability, int defaultDurability, int durability, int ownerId) : base(position)
+    public CastleData(Vector2Int position, int captureHitCost, int maxFreeDurability, int maxDurability, int durability, int ownerId) : base(position)
     {
-        CastleCaptureHitCost = castleCaptureHitCost;
-        FreeDurability = freeDurability;
-        DefaultDurability = defaultDurability;
+        CaptureHitCost = captureHitCost;
+        MaxFreeDurability = maxFreeDurability;
+        MaxDurability = maxDurability;
         Durability = durability;
         OwnerId = ownerId;
     }
 
     private bool Equals(CastleData other)
     {
-        return base.Equals(other) && CastleCaptureHitCost == other.CastleCaptureHitCost && FreeDurability == other.FreeDurability && DefaultDurability == other.DefaultDurability && Durability == other.Durability && OwnerId == other.OwnerId;
+        return base.Equals(other) && CaptureHitCost == other.CaptureHitCost && MaxFreeDurability == other.MaxFreeDurability && MaxDurability == other.MaxDurability && Durability == other.Durability && OwnerId == other.OwnerId;
     }
 
     public override T Accept<T>(IGeneratedContentDataVisitor<T> visitor)
@@ -42,6 +42,6 @@ public sealed class CastleData : GeneratedContentData
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(base.GetHashCode(), CastleCaptureHitCost, FreeDurability, DefaultDurability, Durability, OwnerId);
+        return HashCode.Combine(base.GetHashCode(), CaptureHitCost, MaxFreeDurability, MaxDurability, Durability, OwnerId);
     }
 }
