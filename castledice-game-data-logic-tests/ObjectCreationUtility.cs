@@ -60,6 +60,11 @@ public static class ObjectCreationUtility
     {
         return new TreeData((0, 0), 3, false);
     }
+    
+    public static KnightData GetKnightData()
+    {
+        return new KnightData((0, 0), 2, 1, 1);
+    }
 
     public static CaptureMoveData GetCaptureMoveData()
     {

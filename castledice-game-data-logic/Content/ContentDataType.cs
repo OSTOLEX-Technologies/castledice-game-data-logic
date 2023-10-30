@@ -3,5 +3,6 @@
 public enum ContentDataType
 {
     Castle,
-    Tree
+    Tree, 
+    Knight
 }

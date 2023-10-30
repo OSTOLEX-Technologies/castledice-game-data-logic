@@ -33,5 +33,10 @@ public class JSONSerializationTests
             GetTreeData(),
             new JsonConverter[] { new ContentDataConverter() }
         };
+        yield return new object[]
+        {
+            GetKnightData(),
+            new JsonConverter[] { new ContentDataConverter() }
+        };
     }
 }

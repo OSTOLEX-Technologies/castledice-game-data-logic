@@ -64,5 +64,9 @@ public class EqualsTests
         {
             GetBoardData
         };
+        yield return new[]
+        {
+            GetKnightData
+        };
     }
 }

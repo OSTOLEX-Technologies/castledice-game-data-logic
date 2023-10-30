@@ -21,6 +21,7 @@ public class ContentDataConverter : JsonConverter<ContentData>
         {
             ContentDataType.Castle => jobj.ToObject<CastleData>(),
             ContentDataType.Tree => jobj.ToObject<TreeData>(),
+            ContentDataType.Knight => jobj.ToObject<KnightData>(),
             _ => throw new ArgumentException("Unfamiliar GeneratedContentDataType: " + type)
         };
     }
