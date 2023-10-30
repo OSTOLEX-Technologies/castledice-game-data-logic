@@ -1,8 +1,8 @@
-﻿using castledice_game_data_logic.Content.Generated;
+﻿using castledice_game_data_logic.Content;
 using castledice_game_data_logic.Extensions;
 using castledice_game_logic;
 
-namespace castledice_game_data_logic.Content.Placeable;
+namespace castledice_game_data_logic.ConfigsData;
 
 public sealed class BoardData
 {
@@ -10,9 +10,9 @@ public sealed class BoardData
     public int BoardWidth { get; }
     public CellType CellType { get; }
     public bool[,] CellsPresence { get; }
-    public List<GeneratedContentData> GeneratedContent { get; }
+    public List<ContentData> GeneratedContent { get; }
 
-    public BoardData(int boardLength, int boardWidth, CellType cellType, bool[,] cellsPresence, List<GeneratedContentData> generatedContent)
+    public BoardData(int boardLength, int boardWidth, CellType cellType, bool[,] cellsPresence, List<ContentData> generatedContent)
     {
         BoardLength = boardLength;
         BoardWidth = boardWidth;

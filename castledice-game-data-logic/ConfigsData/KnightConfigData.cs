@@ -1,6 +1,4 @@
-﻿using castledice_game_logic.GameObjects;
-
-namespace castledice_game_data_logic.Content.Placeable;
+﻿namespace castledice_game_data_logic.ConfigsData;
 
 public sealed class KnightConfigData
 {

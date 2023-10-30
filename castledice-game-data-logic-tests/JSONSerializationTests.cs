@@ -21,17 +21,17 @@ public class JSONSerializationTests
         yield return new object[]
         {
             GetGameStartData(),
-            new JsonConverter[] { new GeneratedContentDataConverter() }
+            new JsonConverter[] { new ContentDataConverter() }
         };
         yield return new object[]
         {
             GetCastleData(),
-            new JsonConverter[] { new GeneratedContentDataConverter() }
+            new JsonConverter[] { new ContentDataConverter() }
         };
         yield return new object[]
         {
             GetTreeData(),
-            new JsonConverter[] { new GeneratedContentDataConverter() }
+            new JsonConverter[] { new ContentDataConverter() }
         };
     }
 }

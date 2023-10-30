@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using castledice_game_data_logic;
-using castledice_game_data_logic.Content.Generated;
-using castledice_game_data_logic.Content.Placeable;
+using castledice_game_data_logic.ConfigsData;
+using castledice_game_data_logic.Content;
 using castledice_game_data_logic.Moves;
 using castledice_game_logic;
 using castledice_game_logic.GameObjects;
@@ -33,7 +33,7 @@ public static class ObjectCreationUtility
         var cellsPresence = GetNByNValuesMatrix(10, true);
         var firstCastle = new CastleData((0, 0), 1, 1, 3, 3, 1);
         var secondCastle = new CastleData((9, 9), 1, 1, 3, 3, 2);
-        var generatedContent = new List<GeneratedContentData>
+        var generatedContent = new List<ContentData>
         {
             firstCastle, 
             secondCastle

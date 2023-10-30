@@ -1,20 +1,20 @@
 ﻿using castledice_game_logic.Math;
 
-namespace castledice_game_data_logic.Content.Generated;
+namespace castledice_game_data_logic.Content;
 
-public abstract class GeneratedContentData
+public abstract class ContentData
 {
     public Vector2Int Position { get; }
-    public abstract GeneratedContentDataType Type { get; }
+    public abstract ContentDataType Type { get; }
 
-    protected GeneratedContentData(Vector2Int position)
+    protected ContentData(Vector2Int position)
     {
         Position = position;
     }
     
-    public abstract T Accept<T>(IGeneratedContentDataVisitor<T> visitor);
+    public abstract T Accept<T>(IContentDataVisitor<T> visitor);
     
-    protected bool Equals(GeneratedContentData other)
+    protected bool Equals(ContentData other)
     {
         return Position.Equals(other.Position) && Type == other.Type;
     }
@@ -24,7 +24,7 @@ public abstract class GeneratedContentData
         if (ReferenceEquals(null, obj)) return false;
         if (ReferenceEquals(this, obj)) return true;
         if (obj.GetType() != this.GetType()) return false;
-        return Equals((GeneratedContentData)obj);
+        return Equals((ContentData)obj);
     }
 
     public override int GetHashCode()

@@ -9,7 +9,7 @@ public class TreeDataTests
     [Fact]
     public void Accept_ShouldCallVisitTreeData_OnVisitor()
     {
-        var visitorMock = new Mock<IGeneratedContentDataVisitor<int>>();
+        var visitorMock = new Mock<IContentDataVisitor<int>>();
         var treeData = GetTreeData();
         
         treeData.Accept(visitorMock.Object);
