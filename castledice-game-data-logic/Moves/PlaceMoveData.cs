@@ -20,6 +20,11 @@ public class PlaceMoveData : MoveData
         return base.Equals(other) && PlacementType == other.PlacementType;
     }
 
+    public override T Accept<T>(IMoveDataVisitor<T> visitor)
+    {
+        return visitor.VisitPlaceMoveData(this);
+    }
+
     public override bool Equals(object? obj)
     {
         if (ReferenceEquals(null, obj)) return false;

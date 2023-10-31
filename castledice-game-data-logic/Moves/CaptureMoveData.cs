@@ -7,6 +7,10 @@ namespace castledice_game_data_logic.Moves;
 public class CaptureMoveData : MoveData
 {
     public override MoveType MoveType => MoveType.Capture;
+    public override T Accept<T>(IMoveDataVisitor<T> visitor)
+    {
+        return visitor.VisitCaptureMoveData(this);
+    }
 
     public CaptureMoveData(int playerId, Vector2Int position) : base(playerId, position)
     {

@@ -15,6 +15,8 @@ public abstract class MoveData
         PlayerId = playerId;
         Position = position;
     }
+    
+    public abstract T Accept<T>(IMoveDataVisitor<T> visitor);
 
     protected bool Equals(MoveData other)
     {
