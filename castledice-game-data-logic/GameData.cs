@@ -6,20 +6,17 @@ public sealed class GameData
     public int Id { get; }
     public string Config { get; }
     public DateTime GameStartedTime { get; }
-    public DateTime GameEndedTime { get; }
-    public int WinnerId { get; }
+    public DateTime GameEndedTime { get; set; }
+    public int WinnerId { get; set; }
     public List<int> Players { get; }
-    public string History { get; }
+    public string? History { get; set; }
 
-    public GameData(int id, string config, DateTime gameStartedTime, DateTime gameEndedTime, int winnerId, List<int> players, string history)
+    public GameData(int id, string config, DateTime gameStartedTime, List<int> players)
     {
         Id = id;
         Config = config;
         GameStartedTime = gameStartedTime;
-        GameEndedTime = gameEndedTime;
-        WinnerId = winnerId;
         Players = players;
-        History = history;
     }
 
     private bool Equals(GameData other)
@@ -40,6 +37,6 @@ public sealed class GameData
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Id, Config, GameStartedTime, GameEndedTime, WinnerId, Players, History);
+        return HashCode.Combine(Id, Config, GameStartedTime, Players);
     }
 }

@@ -43,7 +43,16 @@ public static class ObjectCreationUtility
 
     public static GameData GetGameData()
     {
-        return new GameData(1, "someconfig", DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture), DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture), 1, new List<int>{1, 2}, "somehistory");
+        var endTime = DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture);
+        var winnerId = 1;
+        var history = "somehistory";
+        var data = new GameData(1, "someconfig", DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture), new List<int> { 1, 2 })
+        {
+            GameEndedTime = endTime,
+            WinnerId = winnerId,
+            History = history
+        };
+        return data;
     }
 
     public static KnightConfigData GetKnightConfigData()
