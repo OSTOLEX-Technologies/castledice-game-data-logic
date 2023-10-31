@@ -1,14 +1,23 @@
-﻿namespace castledice_game_data_logic;
+﻿using Newtonsoft.Json;
+
+namespace castledice_game_data_logic;
 
 [Serializable]
 public sealed class GameData
 {
+    [JsonProperty("id")]
     public int Id { get; }
+    [JsonProperty("config")]
     public string Config { get; }
+    [JsonProperty("game_started_time")]
     public DateTime GameStartedTime { get; }
+    [JsonProperty("game_ended_time")]
     public DateTime GameEndedTime { get; set; }
+    [JsonProperty("winner")]
     public int WinnerId { get; set; }
+    [JsonProperty("users")]
     public List<int> Players { get; }
+    [JsonProperty("history")]
     public string? History { get; set; }
 
     public GameData(int id, string config, DateTime gameStartedTime, List<int> players)
