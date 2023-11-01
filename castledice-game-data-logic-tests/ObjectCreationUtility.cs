@@ -4,12 +4,21 @@ using castledice_game_data_logic.ConfigsData;
 using castledice_game_data_logic.Content;
 using castledice_game_data_logic.Moves;
 using castledice_game_logic;
+using castledice_game_logic.ActionPointsLogic;
 using castledice_game_logic.GameObjects;
+using castledice_game_logic.Math;
+using castledice_game_logic.MovesLogic;
+using Moq;
 
 namespace castledice_game_data_logic_tests;
 
 public static class ObjectCreationUtility
 {
+    public static Player GetPlayer(int id = 1)
+    {
+        return new Player(new PlayerActionPoints(), id);
+    }
+    
     public static GameStartData GetGameStartData()
     {
         var version = "1.0.0";
@@ -75,29 +84,28 @@ public static class ObjectCreationUtility
         return new KnightData((0, 0), 2, 1, 1);
     }
 
-    public static CaptureMoveData GetCaptureMoveData()
+    public static CaptureMoveData GetCaptureMoveData(int playerId = 1, int x = 1, int y = 1)
     {
-        return new CaptureMoveData(1, (0, 0));
+        return new CaptureMoveData(playerId, (x, y));
     }
 
-    public static PlaceMoveData GetPlaceMoveData()
+    public static PlaceMoveData GetPlaceMoveData(int playerId = 1, int x = 1, int y = 1, PlacementType placementType = PlacementType.Knight)
     {
-        return new PlaceMoveData(1, (0, 0), PlacementType.Knight);
+        return new PlaceMoveData(playerId, (x, y), placementType);
     }
 
-    public static RemoveMoveData GetRemoveMoveData()
+    public static RemoveMoveData GetRemoveMoveData(int playerId = 1, int x = 1, int y = 1)
     {
-        return new RemoveMoveData(1, (0, 0));
+        return new RemoveMoveData(playerId, (x, y));
     }
 
-    public static ReplaceMoveData GetReplaceMoveData()
+    public static ReplaceMoveData GetReplaceMoveData(int playerId = 1, int x = 1, int y = 1, PlacementType replacementType = PlacementType.Knight)
     {
-        return new ReplaceMoveData(1, (0, 0), PlacementType.Knight);
+        return new ReplaceMoveData(playerId, (x, y), replacementType);
     }
-
-    public static UpgradeMoveData GetUpgradeMoveData()
+    public static UpgradeMoveData GetUpgradeMoveData(int playerId = 1, int x = 1, int y = 1)
     {
-        return new UpgradeMoveData(1, (0, 0));
+        return new UpgradeMoveData(playerId, (x, y));
     }
 
     public static PlayerDeckData GetPlayerDeckData() 
@@ -123,4 +131,60 @@ public static class ObjectCreationUtility
 
         return matrix;
     }
+    
+    public abstract class AbstractMoveBuilder
+    {
+        public Player Player = GetPlayer();
+        public Vector2Int Position = new Vector2Int(0, 0);
+    }
+    
+    public class PlaceMoveBuilder : AbstractMoveBuilder
+    {
+
+        public IPlaceable Content = GetPlaceable();
+        
+        public PlaceMove Build()
+        {
+            return new PlaceMove(Player, Position, Content);
+        }
+    }
+    
+    public class ReplaceMoveBuilder : AbstractMoveBuilder
+    {
+        public IPlaceable Replacement = GetPlaceable();
+        
+        public ReplaceMove Build()
+        {
+            return new ReplaceMove(Player, Position, Replacement);
+        }
+    }
+
+    public class RemoveMoveBuilder : AbstractMoveBuilder
+    {
+        public RemoveMove Build()
+        {
+            return new RemoveMove(Player, Position);
+        }
+    }
+
+    public class UpgradeMoveBuilder : AbstractMoveBuilder
+    {
+        public UpgradeMove Build()
+        {
+            return new UpgradeMove(Player, Position);
+        }
+    }
+
+    public class CaptureMoveBuilder : AbstractMoveBuilder
+    {
+        public CaptureMove Build()
+        {
+            return new CaptureMove(Player, Position);
+        }
+    }
+    public static IPlaceable GetPlaceable()
+    {
+        return new Mock<IPlaceable>().Object;
+    }
+    
 }
