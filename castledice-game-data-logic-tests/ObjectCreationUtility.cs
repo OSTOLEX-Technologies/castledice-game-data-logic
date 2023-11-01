@@ -83,6 +83,11 @@ public static class ObjectCreationUtility
     {
         return new KnightData((0, 0), 2, 1, 1);
     }
+    
+    public static Knight GetKnight(Player player, int health = 3, int placementCost = 1)
+    {
+        return new Knight(player, placementCost, health);
+    }
 
     public static CaptureMoveData GetCaptureMoveData(int playerId = 1, int x = 1, int y = 1)
     {
