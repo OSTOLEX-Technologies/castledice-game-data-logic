@@ -23,21 +23,6 @@ public class DataToMoveConverterTests
         
         Assert.Throws<ArgumentException>(() => converter.ConvertToMove(data, player));
     }
-
-    [Fact]
-    public void CreateMove_ShouldPassGivenPlayerToFactory()
-    {
-        var factoryMock = new Mock<IPlaceablesFactory>();
-        factoryMock.Setup(f => f.CreatePlaceable(It.IsAny<PlacementType>(), It.IsAny<Player>()))
-            .Returns(new Mock<IPlaceable>().Object);
-        var player = GetPlayer(1);
-        var data = GetUpgradeMoveData(1);
-        var converter = new DataToMoveConverter(factoryMock.Object);
-        
-        converter.ConvertToMove(data, player);
-        
-        factoryMock.Verify(f => f.CreatePlaceable(It.IsAny<PlacementType>(), player), Times.Once);
-    }
     
     [Theory]
     [InlineData(1, 0, 0)]

@@ -76,7 +76,7 @@ public static class ObjectCreationUtility
 
     public static TreeData GetTreeData()
     {
-        return new TreeData((0, 0), 3, false);
+        return new TreeData((0, 0), 1, false);
     }
     
     public static KnightData GetKnightData()

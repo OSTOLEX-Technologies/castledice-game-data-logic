@@ -8,6 +8,7 @@ namespace castledice_game_data_logic.MoveConverters;
 public class DataToMoveConverter : IDataToMoveConverter, IMoveDataVisitor<AbstractMove>
 {
     private readonly IPlaceablesFactory _placeablesFactory;
+    private Player _currentPlayer;
 
     public DataToMoveConverter(IPlaceablesFactory placeablesFactory)
     {
@@ -16,31 +17,36 @@ public class DataToMoveConverter : IDataToMoveConverter, IMoveDataVisitor<Abstra
 
     public AbstractMove ConvertToMove(MoveData data, Player player)
     {
-        throw new NotImplementedException();
+        if (data.PlayerId != player.Id)
+        {
+            throw new ArgumentException("Player id from data does not match the id of the given player.");
+        }
+        _currentPlayer = player;
+        return data.Accept(this);
     }
 
     public AbstractMove VisitRemoveMoveData(RemoveMoveData data)
     {
-        throw new NotImplementedException();
+        return new RemoveMove(_currentPlayer, data.Position);
     }
 
     public AbstractMove VisitPlaceMoveData(PlaceMoveData data)
     {
-        throw new NotImplementedException();
+        return new PlaceMove(_currentPlayer, data.Position, _placeablesFactory.CreatePlaceable(data.PlacementType, _currentPlayer));
     }
 
     public AbstractMove VisitUpgradeMoveData(UpgradeMoveData data)
     {
-        throw new NotImplementedException();
+        return new UpgradeMove(_currentPlayer, data.Position);
     }
 
     public AbstractMove VisitReplaceMoveData(ReplaceMoveData data)
     {
-        throw new NotImplementedException();
+        return new ReplaceMove(_currentPlayer, data.Position, _placeablesFactory.CreatePlaceable(data.ReplacementType, _currentPlayer));
     }
 
     public AbstractMove VisitCaptureMoveData(CaptureMoveData data)
     {
-        throw new NotImplementedException();
+        return new CaptureMove(_currentPlayer, data.Position);
     }
 }
