@@ -12,7 +12,7 @@ public sealed class GameData
     [JsonProperty("game_started_time")]
     public DateTime GameStartedTime { get; }
     [JsonProperty("game_ended_time")]
-    public DateTime GameEndedTime { get; set; }
+    public DateTime? GameEndedTime { get; set; } = null;
     [JsonProperty("winner")]
     public int? WinnerId { get; set; } = null;
     [JsonProperty("users")]
