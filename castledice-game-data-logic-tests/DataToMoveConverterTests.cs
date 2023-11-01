@@ -12,6 +12,15 @@ namespace castledice_game_data_logic_tests;
 public class DataToMoveConverterTests
 {
     [Fact]
+    public void FactoryProperty_ShouldReturnFactory_GivenInConstructor()
+    {
+        var factoryMock = new Mock<IPlaceablesFactory>();
+        var converter = new DataToMoveConverter(factoryMock.Object);
+        
+        Assert.Same(factoryMock.Object, converter.Factory);
+    }
+    
+    [Fact]
     public void ConvertToMove_ShouldThrowArgumentException_IfGivenPlayerIdIsNotEqualToPlayerIdInData()
     {
         var factoryMock = new Mock<IPlaceablesFactory>();

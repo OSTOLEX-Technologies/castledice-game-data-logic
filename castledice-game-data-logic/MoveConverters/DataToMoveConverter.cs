@@ -7,6 +7,8 @@ namespace castledice_game_data_logic.MoveConverters;
 
 public class DataToMoveConverter : IDataToMoveConverter, IMoveDataVisitor<AbstractMove>
 {
+    public IPlaceablesFactory Factory => _placeablesFactory;
+    
     private readonly IPlaceablesFactory _placeablesFactory;
     private Player _currentPlayer;
 
