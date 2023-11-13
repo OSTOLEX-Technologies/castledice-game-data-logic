@@ -25,6 +25,7 @@ public class EqualsTests
         {
             GetTreeData
         };
+        // Methods for getting move data are written as lambdas due to the unknown c# issue. Haven't figured out it yet.
         yield return new[]
         {
             () => GetCaptureMoveData
@@ -68,6 +69,10 @@ public class EqualsTests
         yield return new[]
         {
             GetKnightData
+        };
+        yield return new[]
+        {
+            GetErrorData
         };
     }
 }

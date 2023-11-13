@@ -2,6 +2,7 @@
 using castledice_game_data_logic;
 using castledice_game_data_logic.ConfigsData;
 using castledice_game_data_logic.Content;
+using castledice_game_data_logic.Errors;
 using castledice_game_data_logic.Moves;
 using castledice_game_logic;
 using castledice_game_logic.ActionPointsLogic;
@@ -14,6 +15,11 @@ namespace castledice_game_data_logic_tests;
 
 public static class ObjectCreationUtility
 {
+    public static ErrorData GetErrorData()
+    {
+        return new ErrorData(ErrorType.GameNotSaved, "Game was not saved.");
+    }
+    
     public static Player GetPlayer(int id = 1)
     {
         return new Player(new PlayerActionPoints(), id);
