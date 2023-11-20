@@ -74,5 +74,13 @@ public class EqualsTests
         {
             GetErrorData
         };
+        yield return new[]
+        {
+            GetActionPointsConditionData
+        };
+        yield return new[]
+        {
+            () => GetTimeConditionData
+        };
     }
 }

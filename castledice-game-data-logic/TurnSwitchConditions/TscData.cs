@@ -6,12 +6,7 @@
 [Serializable]
 public abstract class TscData
 {
-    public TscType Type { get; }
-
-    protected TscData(TscType type)
-    {
-        Type = type;
-    }
+    public abstract TscType Type { get; }
 
     protected bool Equals(TscData other)
     {

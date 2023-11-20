@@ -3,7 +3,5 @@
 [Serializable]
 public class ActionPointsConditionData : TscData
 {
-    public ActionPointsConditionData(TscType type) : base(type)
-    {
-    }
+    public override TscType Type => TscType.ActionPoints;
 }

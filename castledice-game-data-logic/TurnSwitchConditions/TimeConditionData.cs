@@ -3,9 +3,10 @@
 [Serializable]
 public sealed class TimeConditionData : TscData
 {
+    public override TscType Type => TscType.Time;
     public int TurnDuration { get; }
     
-    public TimeConditionData(TscType type, int turnDuration) : base(type)
+    public TimeConditionData(int turnDuration)
     {
         TurnDuration = turnDuration;
     }
@@ -14,7 +15,7 @@ public sealed class TimeConditionData : TscData
     {
         return base.Equals(other) && TurnDuration == other.TurnDuration;
     }
-
+    
     public override bool Equals(object? obj)
     {
         return ReferenceEquals(this, obj) || obj is TimeConditionData other && Equals(other);

@@ -18,9 +18,13 @@ public static class ObjectCreationUtility
 {
     public static ActionPointsConditionData GetActionPointsConditionData()
     {
-        return new ActionPointsConditionData(TscType.ActionPoints);
+        return new ActionPointsConditionData();
     }
     
+    public static TimeConditionData GetTimeConditionData(int turnDuration = 100)
+    {
+        return new TimeConditionData(turnDuration);
+    }
     
     public static ErrorData GetErrorData()
     {
