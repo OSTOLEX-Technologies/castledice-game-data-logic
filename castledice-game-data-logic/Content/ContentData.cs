@@ -2,6 +2,7 @@
 
 namespace castledice_game_data_logic.Content;
 
+[Serializable]
 public abstract class ContentData
 {
     public Vector2Int Position { get; }

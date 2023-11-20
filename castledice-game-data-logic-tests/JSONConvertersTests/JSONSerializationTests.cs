@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using static castledice_game_data_logic_tests.ObjectCreationUtility;
 
-namespace castledice_game_data_logic_tests;
+namespace castledice_game_data_logic_tests.JSONConvertersTests;
 
 public class JSONSerializationTests
 {

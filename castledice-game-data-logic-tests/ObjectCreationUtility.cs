@@ -4,6 +4,7 @@ using castledice_game_data_logic.ConfigsData;
 using castledice_game_data_logic.Content;
 using castledice_game_data_logic.Errors;
 using castledice_game_data_logic.Moves;
+using castledice_game_data_logic.TurnSwitchConditions;
 using castledice_game_logic;
 using castledice_game_logic.ActionPointsLogic;
 using castledice_game_logic.GameObjects;
@@ -15,6 +16,12 @@ namespace castledice_game_data_logic_tests;
 
 public static class ObjectCreationUtility
 {
+    public static ActionPointsConditionData GetActionPointsConditionData()
+    {
+        return new ActionPointsConditionData(TscType.ActionPoints);
+    }
+    
+    
     public static ErrorData GetErrorData()
     {
         return new ErrorData(ErrorType.GameNotSaved, "Game was not saved.");

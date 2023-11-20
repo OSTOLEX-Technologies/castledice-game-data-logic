@@ -4,7 +4,7 @@ using castledice_game_logic.GameObjects;
 using castledice_game_logic.MovesLogic;
 using static castledice_game_data_logic_tests.ObjectCreationUtility;
 
-namespace castledice_game_data_logic_tests;
+namespace castledice_game_data_logic_tests.MoveConvertersTests;
 
 public class MoveToDataConverterTests
 {

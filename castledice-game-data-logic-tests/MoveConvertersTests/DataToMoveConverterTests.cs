@@ -1,5 +1,4 @@
 ﻿using castledice_game_data_logic.MoveConverters;
-using castledice_game_data_logic.Moves;
 using castledice_game_logic;
 using castledice_game_logic.GameObjects;
 using castledice_game_logic.GameObjects.Factories;
@@ -7,7 +6,7 @@ using castledice_game_logic.MovesLogic;
 using Moq;
 using static castledice_game_data_logic_tests.ObjectCreationUtility;
 
-namespace castledice_game_data_logic_tests;
+namespace castledice_game_data_logic_tests.MoveConvertersTests;
 
 public class DataToMoveConverterTests
 {
