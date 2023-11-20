@@ -4,7 +4,13 @@
 public sealed class TimeConditionData : TscData
 {
     public override TscType Type => TscType.Time;
+
     public int TurnDuration { get; }
+    
+    public override T Accept<T>(ITscDataVisitor<T> visitor)
+    {
+        return visitor.VisitTimeConditionData(this);
+    }
     
     public TimeConditionData(int turnDuration)
     {

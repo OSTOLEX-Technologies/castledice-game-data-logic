@@ -8,6 +8,8 @@ public abstract class TscData
 {
     public abstract TscType Type { get; }
 
+    public abstract T Accept<T>(ITscDataVisitor<T> visitor);
+
     protected bool Equals(TscData other)
     {
         return Type == other.Type;
