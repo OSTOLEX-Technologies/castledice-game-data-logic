@@ -1,6 +1,7 @@
 ﻿using castledice_game_data_logic.ConfigsData;
 using castledice_game_data_logic.Content;
 using castledice_game_data_logic.Extensions;
+using castledice_game_data_logic.TurnSwitchConditions;
 using castledice_game_logic;
 
 namespace castledice_game_data_logic;
@@ -10,9 +11,8 @@ public sealed class GameStartData
 {
     public string Version { get; }
     public BoardData BoardData { get; }
-
     public PlaceablesConfigData PlaceablesConfigData { get; }
-    
+    public List<TscData> TurnSwitchConditionsData { get; }
     /// <summary>
     /// This field represents ids of participants and also their turns order.
     /// </summary>
@@ -22,11 +22,13 @@ public sealed class GameStartData
     public GameStartData(string version,
         BoardData boardData,
         PlaceablesConfigData placeablesConfigData,
+        List<TscData> turnSwitchConditionsData,
         List<int> playersIds, 
         List<PlayerDeckData> decks)
     {
         Version = version;
         PlaceablesConfigData = placeablesConfigData;
+        TurnSwitchConditionsData = turnSwitchConditionsData;
         PlayersIds = playersIds;
         Decks = decks;
         BoardData = boardData;
@@ -37,6 +39,7 @@ public sealed class GameStartData
         return Version == other.Version && 
                BoardData.Equals(other.BoardData)  && 
                PlaceablesConfigData.Equals(other.PlaceablesConfigData) &&
+               TurnSwitchConditionsData.SequenceEqual(other.TurnSwitchConditionsData) &&
                PlayersIds.SequenceEqual(other.PlayersIds) && 
                Decks.SequenceEqual(other.Decks);
     }
@@ -53,7 +56,9 @@ public sealed class GameStartData
     {
         var hashCode = new HashCode();
         hashCode.Add(Version);
+        hashCode.Add(BoardData);
         hashCode.Add(PlaceablesConfigData);
+        hashCode.Add(TurnSwitchConditionsData);
         hashCode.Add(PlayersIds);
         hashCode.Add(Decks);
         return hashCode.ToHashCode();

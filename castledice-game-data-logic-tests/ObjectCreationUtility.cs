@@ -47,7 +47,14 @@ public static class ObjectCreationUtility
             new(playerIds[0], new List<PlacementType> { PlacementType.Knight }),
             new (playerIds[1], new List<PlacementType> { PlacementType.Knight })
         };
-        var data = new GameStartData(version, boardConfigData, placeablesConfigs, playerIds, playerDecks);
+        var actionPointsCondition = GetActionPointsConditionData();
+        var timeCondition = GetTimeConditionData();
+        var turnSwitchConditions = new List<TscData>
+        {
+            actionPointsCondition,
+            timeCondition
+        };
+        var data = new GameStartData(version, boardConfigData, placeablesConfigs, turnSwitchConditions, playerIds, playerDecks);
         return data;
     }
 

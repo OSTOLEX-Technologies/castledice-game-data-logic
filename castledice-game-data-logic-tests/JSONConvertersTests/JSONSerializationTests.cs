@@ -21,7 +21,7 @@ public class JSONSerializationTests
         yield return new object[]
         {
             GetGameStartData(),
-            new JsonConverter[] { new ContentDataConverter() }
+            new JsonConverter[] { new ContentDataConverter(), new TscDataConverter() }
         };
         yield return new object[]
         {
