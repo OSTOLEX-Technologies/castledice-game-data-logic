@@ -38,5 +38,15 @@ public class JSONSerializationTests
             GetKnightData(),
             new JsonConverter[] { new ContentDataConverter() }
         };
+        yield return new object[]
+        {
+            GetTimeConditionData(),
+            new JsonConverter[] { new TscDataConverter() }
+        };
+        yield return new object[]
+        {
+            GetActionPointsConditionData(),
+            new JsonConverter[] { new TscDataConverter() }
+        };
     }
 }
