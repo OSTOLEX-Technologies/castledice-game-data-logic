@@ -9,12 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="castledice-game-logic">
-        <HintPath>..\..\castledice-game-logic\castledice-game-logic\bin\Debug\netstandard2.1\castledice-game-logic.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
+      <PackageReference Include="castledice-game-logic" Version="0.0.1-dev1" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
