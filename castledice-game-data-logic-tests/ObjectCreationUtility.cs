@@ -10,12 +10,18 @@ using castledice_game_logic.ActionPointsLogic;
 using castledice_game_logic.GameObjects;
 using castledice_game_logic.Math;
 using castledice_game_logic.MovesLogic;
+using castledice_game_logic.TurnsLogic.TurnSwitchConditions;
 using Moq;
 
 namespace castledice_game_data_logic_tests;
 
 public static class ObjectCreationUtility
 {
+    public static TscConfigData GetTscConfigData()
+    {
+        return new TscConfigData(new List<TscType> { TscType.SwitchByActionPoints });
+    }
+    
     public static ErrorData GetErrorData()
     {
         return new ErrorData(ErrorType.GameNotSaved, "Game was not saved.");
@@ -37,7 +43,7 @@ public static class ObjectCreationUtility
             new(playerIds[0], new List<PlacementType> { PlacementType.Knight }),
             new (playerIds[1], new List<PlacementType> { PlacementType.Knight })
         };
-        var tscConfigData = new TscConfigData();
+        var tscConfigData = new TscConfigData(new List<TscType> { TscType.SwitchByActionPoints });
         var data = new GameStartData(version, boardConfigData, placeablesConfigs, tscConfigData, playerIds, playerDecks);
         return data;
     }

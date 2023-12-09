@@ -73,5 +73,9 @@ public class EqualsTests
         {
             GetErrorData
         };
+        yield return new[]
+        {
+            GetTscConfigData
+        };
     }
 }
