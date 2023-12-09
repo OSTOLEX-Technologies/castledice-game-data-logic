@@ -1,7 +1,7 @@
-﻿using castledice_game_data_logic.Content;
-using castledice_game_data_logic.Content.Generated;
-using castledice_game_data_logic.Content.Placeable;
+﻿using castledice_game_data_logic.ConfigsData;
+using castledice_game_data_logic.Content;
 using castledice_game_data_logic.Extensions;
+using castledice_game_data_logic.TurnSwitchConditions;
 using castledice_game_logic;
 
 namespace castledice_game_data_logic;
@@ -10,13 +10,9 @@ namespace castledice_game_data_logic;
 public sealed class GameStartData
 {
     public string Version { get; }
-    public int BoardLength { get; }
-    public int BoardWidth { get; }
-    public CellType CellType { get; }
-    public bool[,] CellsPresence { get; }
-    public List<GeneratedContentData> GeneratedContent { get; }
-    public List<PlaceableContentData> PlaceablesConfigs { get; }
-    
+    public BoardData BoardData { get; }
+    public PlaceablesConfigData PlaceablesConfigData { get; }
+    public List<TscData> TurnSwitchConditionsData { get; }
     /// <summary>
     /// This field represents ids of participants and also their turns order.
     /// </summary>
@@ -24,35 +20,26 @@ public sealed class GameStartData
     public List<PlayerDeckData> Decks { get; }
 
     public GameStartData(string version,
-        int boardLength, 
-        int boardWidth, 
-        CellType cellType, 
-        bool[,] cellsPresence, 
-        List<GeneratedContentData> generatedContent,
-        List<PlaceableContentData> placeablesConfigs,
+        BoardData boardData,
+        PlaceablesConfigData placeablesConfigData,
+        List<TscData> turnSwitchConditionsData,
         List<int> playersIds, 
         List<PlayerDeckData> decks)
     {
         Version = version;
-        BoardLength = boardLength;
-        BoardWidth = boardWidth;
-        CellType = cellType;
-        CellsPresence = cellsPresence;
-        GeneratedContent = generatedContent;
-        PlaceablesConfigs = placeablesConfigs;
+        PlaceablesConfigData = placeablesConfigData;
+        TurnSwitchConditionsData = turnSwitchConditionsData;
         PlayersIds = playersIds;
         Decks = decks;
+        BoardData = boardData;
     }
 
     private bool Equals(GameStartData other)
     {
         return Version == other.Version && 
-               BoardLength == other.BoardLength && 
-               BoardWidth == other.BoardWidth && 
-               CellType == other.CellType && 
-               CellsPresence.Equals2D(other.CellsPresence) && 
-               GeneratedContent.SequenceEqual(other.GeneratedContent) && 
-               PlaceablesConfigs.SequenceEqual(other.PlaceablesConfigs) &&
+               BoardData.Equals(other.BoardData)  && 
+               PlaceablesConfigData.Equals(other.PlaceablesConfigData) &&
+               TurnSwitchConditionsData.SequenceEqual(other.TurnSwitchConditionsData) &&
                PlayersIds.SequenceEqual(other.PlayersIds) && 
                Decks.SequenceEqual(other.Decks);
     }
@@ -69,12 +56,9 @@ public sealed class GameStartData
     {
         var hashCode = new HashCode();
         hashCode.Add(Version);
-        hashCode.Add(BoardLength);
-        hashCode.Add(BoardWidth);
-        hashCode.Add((int)CellType);
-        hashCode.Add(CellsPresence);
-        hashCode.Add(GeneratedContent);
-        hashCode.Add(PlaceablesConfigs);
+        hashCode.Add(BoardData);
+        hashCode.Add(PlaceablesConfigData);
+        hashCode.Add(TurnSwitchConditionsData);
         hashCode.Add(PlayersIds);
         hashCode.Add(Decks);
         return hashCode.ToHashCode();

@@ -20,6 +20,11 @@ public class ReplaceMoveData : MoveData
         return base.Equals(other) && ReplacementType == other.ReplacementType;
     }
 
+    public override T Accept<T>(IMoveDataVisitor<T> visitor)
+    {
+        return visitor.VisitReplaceMoveData(this);
+    }
+
     public override bool Equals(object? obj)
     {
         if (ReferenceEquals(null, obj)) return false;

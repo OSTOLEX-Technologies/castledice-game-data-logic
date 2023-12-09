@@ -1,4 +1,5 @@
-﻿using static castledice_game_data_logic_tests.ObjectCreationUtility;
+﻿using castledice_game_data_logic.Moves;
+using static castledice_game_data_logic_tests.ObjectCreationUtility;
 namespace castledice_game_data_logic_tests;
 
 public class EqualsTests
@@ -24,25 +25,26 @@ public class EqualsTests
         {
             GetTreeData
         };
+        // Methods for getting move data are written as lambdas due to the unknown c# issue. Haven't figured out it yet.
         yield return new[]
         {
-            GetCaptureMoveData
+            () => GetCaptureMoveData
         };
         yield return new[]
         {
-            GetPlaceMoveData
+            () => GetPlaceMoveData
         };
         yield return new[]
         {
-            GetRemoveMoveData
+            () => GetRemoveMoveData
         };
         yield return new[]
         {
-            GetReplaceMoveData
+            () => GetReplaceMoveData
         };
         yield return new[]
         {
-            GetUpgradeMoveData
+            () => GetUpgradeMoveData
         };
         yield return new[]
         {
@@ -54,11 +56,31 @@ public class EqualsTests
         };
         yield return new[]
         {
-            GetKnightData
+            GetKnightConfigData
         };
         yield return new[]
         {
             GetGameData
+        };
+        yield return new[]
+        {
+            GetBoardData
+        };
+        yield return new[]
+        {
+            GetKnightData
+        };
+        yield return new[]
+        {
+            GetErrorData
+        };
+        yield return new[]
+        {
+            GetActionPointsConditionData
+        };
+        yield return new[]
+        {
+            () => GetTimeConditionData
         };
     }
 }

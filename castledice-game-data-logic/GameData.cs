@@ -1,25 +1,31 @@
-﻿namespace castledice_game_data_logic;
+﻿using Newtonsoft.Json;
+
+namespace castledice_game_data_logic;
 
 [Serializable]
 public sealed class GameData
 {
+    [JsonProperty("id")]
     public int Id { get; }
+    [JsonProperty("config")]
     public string Config { get; }
+    [JsonProperty("game_started_time")]
     public DateTime GameStartedTime { get; }
-    public DateTime GameEndedTime { get; }
-    public int WinnerId { get; }
+    [JsonProperty("game_ended_time")]
+    public DateTime? GameEndedTime { get; set; } = null;
+    [JsonProperty("winner")]
+    public int? WinnerId { get; set; } = null;
+    [JsonProperty("users")]
     public List<int> Players { get; }
-    public string History { get; }
+    [JsonProperty("history")]
+    public string? History { get; set; }
 
-    public GameData(int id, string config, DateTime gameStartedTime, DateTime gameEndedTime, int winnerId, List<int> players, string history)
+    public GameData(int id, string config, DateTime gameStartedTime, List<int> players)
     {
         Id = id;
         Config = config;
         GameStartedTime = gameStartedTime;
-        GameEndedTime = gameEndedTime;
-        WinnerId = winnerId;
         Players = players;
-        History = history;
     }
 
     private bool Equals(GameData other)
@@ -40,6 +46,6 @@ public sealed class GameData
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Id, Config, GameStartedTime, GameEndedTime, WinnerId, Players, History);
+        return HashCode.Combine(Id, Config, GameStartedTime, Players);
     }
 }

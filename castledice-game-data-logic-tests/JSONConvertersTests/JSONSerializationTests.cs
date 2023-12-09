@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using static castledice_game_data_logic_tests.ObjectCreationUtility;
 
-namespace castledice_game_data_logic_tests;
+namespace castledice_game_data_logic_tests.JSONConvertersTests;
 
 public class JSONSerializationTests
 {
@@ -21,22 +21,32 @@ public class JSONSerializationTests
         yield return new object[]
         {
             GetGameStartData(),
-            new JsonConverter[] { new GeneratedContentDataConverter(), new PlaceableContentDataConverter() }
-        };
-        yield return new object[]
-        {
-            GetKnightData(),
-            new JsonConverter[] { new PlaceableContentDataConverter() }
+            new JsonConverter[] { new ContentDataConverter(), new TscDataConverter() }
         };
         yield return new object[]
         {
             GetCastleData(),
-            new JsonConverter[] { new GeneratedContentDataConverter() }
+            new JsonConverter[] { new ContentDataConverter() }
         };
         yield return new object[]
         {
             GetTreeData(),
-            new JsonConverter[] { new GeneratedContentDataConverter() }
+            new JsonConverter[] { new ContentDataConverter() }
+        };
+        yield return new object[]
+        {
+            GetKnightData(),
+            new JsonConverter[] { new ContentDataConverter() }
+        };
+        yield return new object[]
+        {
+            GetTimeConditionData(),
+            new JsonConverter[] { new TscDataConverter() }
+        };
+        yield return new object[]
+        {
+            GetActionPointsConditionData(),
+            new JsonConverter[] { new TscDataConverter() }
         };
     }
 }

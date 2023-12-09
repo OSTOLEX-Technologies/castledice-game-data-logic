@@ -1,51 +1,96 @@
 ﻿using System.Globalization;
 using castledice_game_data_logic;
-using castledice_game_data_logic.Content.Generated;
-using castledice_game_data_logic.Content.Placeable;
+using castledice_game_data_logic.ConfigsData;
+using castledice_game_data_logic.Content;
+using castledice_game_data_logic.Errors;
 using castledice_game_data_logic.Moves;
+using castledice_game_data_logic.TurnSwitchConditions;
 using castledice_game_logic;
+using castledice_game_logic.ActionPointsLogic;
 using castledice_game_logic.GameObjects;
+using castledice_game_logic.Math;
+using castledice_game_logic.MovesLogic;
+using Moq;
 
 namespace castledice_game_data_logic_tests;
 
 public static class ObjectCreationUtility
 {
+    public static ActionPointsConditionData GetActionPointsConditionData()
+    {
+        return new ActionPointsConditionData();
+    }
+    
+    public static TimeConditionData GetTimeConditionData(int turnDuration = 100)
+    {
+        return new TimeConditionData(turnDuration);
+    }
+    
+    public static ErrorData GetErrorData()
+    {
+        return new ErrorData(ErrorType.GameNotSaved, "Game was not saved.");
+    }
+    
+    public static Player GetPlayer(int id = 1)
+    {
+        return new Player(new PlayerActionPoints(), id);
+    }
+    
     public static GameStartData GetGameStartData()
     {
         var version = "1.0.0";
-        var boardLength = 10;
-        var boardWidth = 10;
-        var cellType = CellType.Square;
-        var cellsPresence = GetNByNValuesMatrix(10, true);
         var playerIds = new List<int>() { 1, 2 };
-        var firstCastle = new CastleData((0, 0), 1, 1, 3, 3, playerIds[0]);
-        var secondCastle = new CastleData((9, 9), 1, 1, 3, 3, playerIds[1]);
-        var generatedContent = new List<GeneratedContentData>
-        {
-            firstCastle, 
-            secondCastle
-        };
-        var placeablesConfigs = new List<PlaceableContentData>
-        {
-            new KnightData(1, 2)
-        };
+        var boardConfigData = GetBoardData();
+        var placeablesConfigs = new PlaceablesConfigData(GetKnightConfigData());
         var playerDecks = new List<PlayerDeckData>()
         {
             new(playerIds[0], new List<PlacementType> { PlacementType.Knight }),
             new (playerIds[1], new List<PlacementType> { PlacementType.Knight })
         };
-        var data = new GameStartData(version, boardLength, boardWidth, cellType, cellsPresence, generatedContent, placeablesConfigs, playerIds, playerDecks);
+        var actionPointsCondition = GetActionPointsConditionData();
+        var timeCondition = GetTimeConditionData();
+        var turnSwitchConditions = new List<TscData>
+        {
+            actionPointsCondition,
+            timeCondition
+        };
+        var data = new GameStartData(version, boardConfigData, placeablesConfigs, turnSwitchConditions, playerIds, playerDecks);
         return data;
+    }
+
+    public static BoardData GetBoardData()
+    {
+        var boardLength = 10;
+        var boardWidth = 10;
+        var cellType = CellType.Square;
+        var cellsPresence = GetNByNValuesMatrix(10, true);
+        var firstCastle = new CastleData((0, 0), 1, 1, 3, 3, 1);
+        var secondCastle = new CastleData((9, 9), 1, 1, 3, 3, 2);
+        var generatedContent = new List<ContentData>
+        {
+            firstCastle, 
+            secondCastle
+        };
+        return new BoardData(boardLength, boardWidth, cellType, cellsPresence, generatedContent);
     }
 
     public static GameData GetGameData()
     {
-        return new GameData(1, "someconfig", DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture), DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture), 1, new List<int>{1, 2}, "somehistory");
+        var endTime = DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture);
+        var winnerId = 1;
+        var history = "somehistory";
+        var data = new GameData(1, "someconfig", DateTime.Parse("2/27/2023 2:06:49", CultureInfo.InvariantCulture), new List<int> { 1, 2 })
+        {
+            GameEndedTime = endTime,
+            WinnerId = winnerId,
+            History = history
+        };
+        return data;
     }
 
-    public static KnightData GetKnightData()
+    public static KnightConfigData GetKnightConfigData()
     {
-        return new KnightData(1, 2);
+        return new KnightConfigData(1, 2);
     }
     
     public static CastleData GetCastleData()
@@ -55,32 +100,41 @@ public static class ObjectCreationUtility
 
     public static TreeData GetTreeData()
     {
-        return new TreeData((0, 0), 3, false);
+        return new TreeData((0, 0), 1, false);
+    }
+    
+    public static KnightData GetKnightData()
+    {
+        return new KnightData((0, 0), 2, 1, 1);
+    }
+    
+    public static Knight GetKnight(Player player, int health = 3, int placementCost = 1)
+    {
+        return new Knight(player, placementCost, health);
     }
 
-    public static CaptureMoveData GetCaptureMoveData()
+    public static CaptureMoveData GetCaptureMoveData(int playerId = 1, int x = 1, int y = 1)
     {
-        return new CaptureMoveData(1, (0, 0));
+        return new CaptureMoveData(playerId, (x, y));
     }
 
-    public static PlaceMoveData GetPlaceMoveData()
+    public static PlaceMoveData GetPlaceMoveData(int playerId = 1, int x = 1, int y = 1, PlacementType placementType = PlacementType.Knight)
     {
-        return new PlaceMoveData(1, (0, 0), PlacementType.Knight);
+        return new PlaceMoveData(playerId, (x, y), placementType);
     }
 
-    public static RemoveMoveData GetRemoveMoveData()
+    public static RemoveMoveData GetRemoveMoveData(int playerId = 1, int x = 1, int y = 1)
     {
-        return new RemoveMoveData(1, (0, 0));
+        return new RemoveMoveData(playerId, (x, y));
     }
 
-    public static ReplaceMoveData GetReplaceMoveData()
+    public static ReplaceMoveData GetReplaceMoveData(int playerId = 1, int x = 1, int y = 1, PlacementType replacementType = PlacementType.Knight)
     {
-        return new ReplaceMoveData(1, (0, 0), PlacementType.Knight);
+        return new ReplaceMoveData(playerId, (x, y), replacementType);
     }
-
-    public static UpgradeMoveData GetUpgradeMoveData()
+    public static UpgradeMoveData GetUpgradeMoveData(int playerId = 1, int x = 1, int y = 1)
     {
-        return new UpgradeMoveData(1, (0, 0));
+        return new UpgradeMoveData(playerId, (x, y));
     }
 
     public static PlayerDeckData GetPlayerDeckData() 
@@ -106,4 +160,60 @@ public static class ObjectCreationUtility
 
         return matrix;
     }
+    
+    public abstract class AbstractMoveBuilder
+    {
+        public Player Player = GetPlayer();
+        public Vector2Int Position = new Vector2Int(0, 0);
+    }
+    
+    public class PlaceMoveBuilder : AbstractMoveBuilder
+    {
+
+        public IPlaceable Content = GetPlaceable();
+        
+        public PlaceMove Build()
+        {
+            return new PlaceMove(Player, Position, Content);
+        }
+    }
+    
+    public class ReplaceMoveBuilder : AbstractMoveBuilder
+    {
+        public IPlaceable Replacement = GetPlaceable();
+        
+        public ReplaceMove Build()
+        {
+            return new ReplaceMove(Player, Position, Replacement);
+        }
+    }
+
+    public class RemoveMoveBuilder : AbstractMoveBuilder
+    {
+        public RemoveMove Build()
+        {
+            return new RemoveMove(Player, Position);
+        }
+    }
+
+    public class UpgradeMoveBuilder : AbstractMoveBuilder
+    {
+        public UpgradeMove Build()
+        {
+            return new UpgradeMove(Player, Position);
+        }
+    }
+
+    public class CaptureMoveBuilder : AbstractMoveBuilder
+    {
+        public CaptureMove Build()
+        {
+            return new CaptureMove(Player, Position);
+        }
+    }
+    public static IPlaceable GetPlaceable()
+    {
+        return new Mock<IPlaceable>().Object;
+    }
+    
 }
