@@ -11,6 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="castledice-game-logic" Version="0.0.1-dev3" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0"/>
         <PackageReference Include="Moq" Version="4.20.69" />
         <PackageReference Include="xunit" Version="2.4.2"/>
@@ -26,12 +27,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\castledice-game-data-logic\castledice-game-data-logic.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="castledice-game-logic">
-        <HintPath>..\..\castledice-game-logic\castledice-game-logic\bin\Debug\netstandard2.1\castledice-game-logic.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>
