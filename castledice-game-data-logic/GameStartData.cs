@@ -12,7 +12,7 @@ public sealed class GameStartData
     public string Version { get; }
     public BoardData BoardData { get; }
     public PlaceablesConfigData PlaceablesConfigData { get; }
-    public List<TscData> TurnSwitchConditionsData { get; }
+    public TscConfigData TscConfigData { get; }
     /// <summary>
     /// This field represents ids of participants and also their turns order.
     /// </summary>
@@ -22,13 +22,13 @@ public sealed class GameStartData
     public GameStartData(string version,
         BoardData boardData,
         PlaceablesConfigData placeablesConfigData,
-        List<TscData> turnSwitchConditionsData,
+        TscConfigData tscConfigData,
         List<int> playersIds, 
         List<PlayerDeckData> decks)
     {
         Version = version;
         PlaceablesConfigData = placeablesConfigData;
-        TurnSwitchConditionsData = turnSwitchConditionsData;
+        TscConfigData = tscConfigData;
         PlayersIds = playersIds;
         Decks = decks;
         BoardData = boardData;
@@ -39,7 +39,7 @@ public sealed class GameStartData
         return Version == other.Version && 
                BoardData.Equals(other.BoardData)  && 
                PlaceablesConfigData.Equals(other.PlaceablesConfigData) &&
-               TurnSwitchConditionsData.SequenceEqual(other.TurnSwitchConditionsData) &&
+               TscConfigData.Equals(other.TscConfigData) &&
                PlayersIds.SequenceEqual(other.PlayersIds) && 
                Decks.SequenceEqual(other.Decks);
     }
@@ -58,7 +58,7 @@ public sealed class GameStartData
         hashCode.Add(Version);
         hashCode.Add(BoardData);
         hashCode.Add(PlaceablesConfigData);
-        hashCode.Add(TurnSwitchConditionsData);
+        hashCode.Add(TscConfigData);
         hashCode.Add(PlayersIds);
         hashCode.Add(Decks);
         return hashCode.ToHashCode();

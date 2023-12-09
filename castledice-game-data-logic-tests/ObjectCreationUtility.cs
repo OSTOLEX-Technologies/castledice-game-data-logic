@@ -16,16 +16,6 @@ namespace castledice_game_data_logic_tests;
 
 public static class ObjectCreationUtility
 {
-    public static ActionPointsConditionData GetActionPointsConditionData()
-    {
-        return new ActionPointsConditionData();
-    }
-    
-    public static TimeConditionData GetTimeConditionData(int turnDuration = 100)
-    {
-        return new TimeConditionData(turnDuration);
-    }
-    
     public static ErrorData GetErrorData()
     {
         return new ErrorData(ErrorType.GameNotSaved, "Game was not saved.");
@@ -47,14 +37,8 @@ public static class ObjectCreationUtility
             new(playerIds[0], new List<PlacementType> { PlacementType.Knight }),
             new (playerIds[1], new List<PlacementType> { PlacementType.Knight })
         };
-        var actionPointsCondition = GetActionPointsConditionData();
-        var timeCondition = GetTimeConditionData();
-        var turnSwitchConditions = new List<TscData>
-        {
-            actionPointsCondition,
-            timeCondition
-        };
-        var data = new GameStartData(version, boardConfigData, placeablesConfigs, turnSwitchConditions, playerIds, playerDecks);
+        var tscConfigData = new TscConfigData();
+        var data = new GameStartData(version, boardConfigData, placeablesConfigs, tscConfigData, playerIds, playerDecks);
         return data;
     }
 
