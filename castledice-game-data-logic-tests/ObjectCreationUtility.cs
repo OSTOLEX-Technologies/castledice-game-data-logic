@@ -10,20 +10,16 @@ using castledice_game_logic.ActionPointsLogic;
 using castledice_game_logic.GameObjects;
 using castledice_game_logic.Math;
 using castledice_game_logic.MovesLogic;
+using castledice_game_logic.TurnsLogic.TurnSwitchConditions;
 using Moq;
 
 namespace castledice_game_data_logic_tests;
 
 public static class ObjectCreationUtility
 {
-    public static ActionPointsConditionData GetActionPointsConditionData()
+    public static TscConfigData GetTscConfigData()
     {
-        return new ActionPointsConditionData();
-    }
-    
-    public static TimeConditionData GetTimeConditionData(int turnDuration = 100)
-    {
-        return new TimeConditionData(turnDuration);
+        return new TscConfigData(new List<TscType> { TscType.SwitchByActionPoints });
     }
     
     public static ErrorData GetErrorData()
@@ -47,14 +43,8 @@ public static class ObjectCreationUtility
             new(playerIds[0], new List<PlacementType> { PlacementType.Knight }),
             new (playerIds[1], new List<PlacementType> { PlacementType.Knight })
         };
-        var actionPointsCondition = GetActionPointsConditionData();
-        var timeCondition = GetTimeConditionData();
-        var turnSwitchConditions = new List<TscData>
-        {
-            actionPointsCondition,
-            timeCondition
-        };
-        var data = new GameStartData(version, boardConfigData, placeablesConfigs, turnSwitchConditions, playerIds, playerDecks);
+        var tscConfigData = new TscConfigData(new List<TscType> { TscType.SwitchByActionPoints });
+        var data = new GameStartData(version, boardConfigData, placeablesConfigs, tscConfigData, playerIds, playerDecks);
         return data;
     }
 

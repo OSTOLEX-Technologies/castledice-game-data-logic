@@ -1,5 +1,4 @@
-﻿using castledice_game_data_logic.Moves;
-using static castledice_game_data_logic_tests.ObjectCreationUtility;
+﻿using static castledice_game_data_logic_tests.ObjectCreationUtility;
 namespace castledice_game_data_logic_tests;
 
 public class EqualsTests
@@ -76,11 +75,7 @@ public class EqualsTests
         };
         yield return new[]
         {
-            GetActionPointsConditionData
-        };
-        yield return new[]
-        {
-            () => GetTimeConditionData
+            GetTscConfigData
         };
     }
 }
