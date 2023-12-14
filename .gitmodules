@@ -1,0 +1,3 @@
+[submodule "DLL-builder-action"]
+	path = DLL-builder-action
+	url = https://github.com/OSTOLEX-Technologies/DLL-builder-action.git
