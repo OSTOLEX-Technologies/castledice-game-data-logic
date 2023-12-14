@@ -13,12 +13,5 @@ jobs:
       - name: Trigger Submodule Workflow
         uses: peter-evans/repository-dispatch@v2
         with:
-          event-type: ${{ github.event.inputs.submodule_event_type }}
-          client-payload: >
-            {
-              "workflow": "Build and Publish DLLs",
-              "repository": "${{ github.repository }}",
-              "repo_owner": "${{ github.repository_owner }}",
-              "triggered_commit": "${{ github.sha }}",
-              "commit_tag": "${{ github.ref_name }}"
-            }
+          event-type: "${{ github.event.inputs.submodule_event_type }}"
+          client-payload: '{"workflow": "Build and Publish DLLs", "repository": "${{ github.repository }}", "repo_owner": "${{ github.repository_owner }}", "triggered_commit": "${{ github.sha }}", "commit_tag": "${{ github.ref_name }}" }'
