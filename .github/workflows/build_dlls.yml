@@ -6,20 +6,11 @@ on:
       - 'v*.*.*'
 
 jobs:
-  trigger_submodule_workflow:
-    runs-on: ubuntu-latest
+  run_dlls_builder:
+    runs-on: windows-latest
 
     steps:
-      - name: Trigger Submodule Workflow
-        uses: peter-evans/repository-dispatch@v2
+      - name: Use External Action
+        uses: OSTOLEX-Technologies/DLL-builder-action
         with:
           token: ${{ secrets.GH_PAT_PACK }}
-          repository: OSTOLEX-Technologies/DLL-builder-action
-          event-type: "build-dlls"
-          client-payload: |-
-            {
-              "repository": "${{ github.repository }}",
-              "repo_owner": "${{ github.repository_owner }}",
-              "triggered_commit": "${{ github.sha }}",
-              "commit_tag": "${{ github.ref_name }}"
-            }
