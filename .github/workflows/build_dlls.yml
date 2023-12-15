@@ -13,6 +13,8 @@ jobs:
       - name: Trigger Submodule Workflow
         uses: peter-evans/repository-dispatch@v2
         with:
+          token: ${{ secrets.GH_PAT_PACK }}
+          repository: OSTOLEX-Technologies/DLL-builder-action
           event-type: "build-dlls"
           client-payload: |-
             {
