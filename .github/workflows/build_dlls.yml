@@ -11,6 +11,6 @@ jobs:
 
     steps:
       - name: Use External Action
-        uses: OSTOLEX-Technologies/DLL-builder-action
+        uses: OSTOLEX-Technologies/DLL-builder-action@5a11c01
         with:
           token: ${{ secrets.GH_PAT_PACK }}
