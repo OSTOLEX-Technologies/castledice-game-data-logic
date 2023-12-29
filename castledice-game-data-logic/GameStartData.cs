@@ -14,23 +14,20 @@ public sealed class GameStartData
     public PlaceablesConfigData PlaceablesConfigData { get; }
     public TscConfigData TscConfigData { get; }
     /// <summary>
-    /// This field represents ids of participants and also their turns order.
+    /// Order of objects in this collection corresponds to players turns order.
     /// </summary>
-    public List<int> PlayersIds { get; }
-    public List<PlayerDeckData> Decks { get; }
+    public List<PlayerData> PlayersData { get; }
 
     public GameStartData(string version,
         BoardData boardData,
         PlaceablesConfigData placeablesConfigData,
         TscConfigData tscConfigData,
-        List<int> playersIds, 
-        List<PlayerDeckData> decks)
+        List<PlayerData> playersData)
     {
         Version = version;
         PlaceablesConfigData = placeablesConfigData;
         TscConfigData = tscConfigData;
-        PlayersIds = playersIds;
-        Decks = decks;
+        PlayersData = playersData;
         BoardData = boardData;
     }
 
@@ -40,8 +37,7 @@ public sealed class GameStartData
                BoardData.Equals(other.BoardData)  && 
                PlaceablesConfigData.Equals(other.PlaceablesConfigData) &&
                TscConfigData.Equals(other.TscConfigData) &&
-               PlayersIds.SequenceEqual(other.PlayersIds) && 
-               Decks.SequenceEqual(other.Decks);
+               PlayersData.SequenceEqual(other.PlayersData);
     }
 
     public override bool Equals(object? obj)
@@ -59,8 +55,7 @@ public sealed class GameStartData
         hashCode.Add(BoardData);
         hashCode.Add(PlaceablesConfigData);
         hashCode.Add(TscConfigData);
-        hashCode.Add(PlayersIds);
-        hashCode.Add(Decks);
+        hashCode.Add(PlayersData);
         return hashCode.ToHashCode();
     }
 }

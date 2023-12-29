@@ -24,7 +24,7 @@ public class EqualsTests
         {
             GetTreeData
         };
-        // Methods for getting move data are written as lambdas due to the unknown c# issue. Haven't figured out it yet.
+        // Methods for getting move data are wrapped into lambdas because they are parameterized
         yield return new[]
         {
             () => GetCaptureMoveData
@@ -76,6 +76,10 @@ public class EqualsTests
         yield return new[]
         {
             GetTscConfigData
+        };
+        yield return new[]
+        {
+            () => GetPlayerData
         };
     }
 }

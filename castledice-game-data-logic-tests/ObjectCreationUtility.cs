@@ -32,19 +32,22 @@ public static class ObjectCreationUtility
         return new Player(new PlayerActionPoints(), id);
     }
     
+    public static PlayerData GetPlayerData(int id = 1, TimeSpan timeSpan = new(), params PlacementType[] placementTypes)
+    {
+        return new PlayerData(id, placementTypes.ToList(), timeSpan);
+    }
+    
     public static GameStartData GetGameStartData()
     {
         var version = "1.0.0";
-        var playerIds = new List<int>() { 1, 2 };
         var boardConfigData = GetBoardData();
         var placeablesConfigs = new PlaceablesConfigData(GetKnightConfigData());
-        var playerDecks = new List<PlayerDeckData>()
-        {
-            new(playerIds[0], new List<PlacementType> { PlacementType.Knight }),
-            new (playerIds[1], new List<PlacementType> { PlacementType.Knight })
-        };
         var tscConfigData = new TscConfigData(new List<TscType> { TscType.SwitchByActionPoints });
-        var data = new GameStartData(version, boardConfigData, placeablesConfigs, tscConfigData, playerIds, playerDecks);
+        var data = new GameStartData(version, boardConfigData, placeablesConfigs, tscConfigData, new List<PlayerData>
+            {
+                GetPlayerData(id: 1, timeSpan: new(), PlacementType.Knight), 
+                GetPlayerData(id: 2, timeSpan: new(), PlacementType.Knight)
+            });
         return data;
     }
 
