@@ -12,25 +12,22 @@ public sealed class GameStartData
     public string Version { get; }
     public BoardData BoardData { get; }
     public PlaceablesConfigData PlaceablesConfigData { get; }
-    public List<TscData> TurnSwitchConditionsData { get; }
+    public TscConfigData TscConfigData { get; }
     /// <summary>
-    /// This field represents ids of participants and also their turns order.
+    /// Order of objects in this collection corresponds to players turns order.
     /// </summary>
-    public List<int> PlayersIds { get; }
-    public List<PlayerDeckData> Decks { get; }
+    public List<PlayerData> PlayersData { get; }
 
     public GameStartData(string version,
         BoardData boardData,
         PlaceablesConfigData placeablesConfigData,
-        List<TscData> turnSwitchConditionsData,
-        List<int> playersIds, 
-        List<PlayerDeckData> decks)
+        TscConfigData tscConfigData,
+        List<PlayerData> playersData)
     {
         Version = version;
         PlaceablesConfigData = placeablesConfigData;
-        TurnSwitchConditionsData = turnSwitchConditionsData;
-        PlayersIds = playersIds;
-        Decks = decks;
+        TscConfigData = tscConfigData;
+        PlayersData = playersData;
         BoardData = boardData;
     }
 
@@ -39,9 +36,8 @@ public sealed class GameStartData
         return Version == other.Version && 
                BoardData.Equals(other.BoardData)  && 
                PlaceablesConfigData.Equals(other.PlaceablesConfigData) &&
-               TurnSwitchConditionsData.SequenceEqual(other.TurnSwitchConditionsData) &&
-               PlayersIds.SequenceEqual(other.PlayersIds) && 
-               Decks.SequenceEqual(other.Decks);
+               TscConfigData.Equals(other.TscConfigData) &&
+               PlayersData.SequenceEqual(other.PlayersData);
     }
 
     public override bool Equals(object? obj)
@@ -58,9 +54,8 @@ public sealed class GameStartData
         hashCode.Add(Version);
         hashCode.Add(BoardData);
         hashCode.Add(PlaceablesConfigData);
-        hashCode.Add(TurnSwitchConditionsData);
-        hashCode.Add(PlayersIds);
-        hashCode.Add(Decks);
+        hashCode.Add(TscConfigData);
+        hashCode.Add(PlayersData);
         return hashCode.ToHashCode();
     }
 }

@@ -10,20 +10,16 @@ using castledice_game_logic.ActionPointsLogic;
 using castledice_game_logic.GameObjects;
 using castledice_game_logic.Math;
 using castledice_game_logic.MovesLogic;
+using castledice_game_logic.TurnsLogic.TurnSwitchConditions;
 using Moq;
 
 namespace castledice_game_data_logic_tests;
 
 public static class ObjectCreationUtility
 {
-    public static ActionPointsConditionData GetActionPointsConditionData()
+    public static TscConfigData GetTscConfigData()
     {
-        return new ActionPointsConditionData();
-    }
-    
-    public static TimeConditionData GetTimeConditionData(int turnDuration = 100)
-    {
-        return new TimeConditionData(turnDuration);
+        return new TscConfigData(new List<TscType> { TscType.SwitchByActionPoints });
     }
     
     public static ErrorData GetErrorData()
@@ -36,25 +32,22 @@ public static class ObjectCreationUtility
         return new Player(new PlayerActionPoints(), id);
     }
     
+    public static PlayerData GetPlayerData(int id = 1, TimeSpan timeSpan = new(), params PlacementType[] placementTypes)
+    {
+        return new PlayerData(id, placementTypes.ToList(), timeSpan);
+    }
+    
     public static GameStartData GetGameStartData()
     {
         var version = "1.0.0";
-        var playerIds = new List<int>() { 1, 2 };
         var boardConfigData = GetBoardData();
         var placeablesConfigs = new PlaceablesConfigData(GetKnightConfigData());
-        var playerDecks = new List<PlayerDeckData>()
-        {
-            new(playerIds[0], new List<PlacementType> { PlacementType.Knight }),
-            new (playerIds[1], new List<PlacementType> { PlacementType.Knight })
-        };
-        var actionPointsCondition = GetActionPointsConditionData();
-        var timeCondition = GetTimeConditionData();
-        var turnSwitchConditions = new List<TscData>
-        {
-            actionPointsCondition,
-            timeCondition
-        };
-        var data = new GameStartData(version, boardConfigData, placeablesConfigs, turnSwitchConditions, playerIds, playerDecks);
+        var tscConfigData = new TscConfigData(new List<TscType> { TscType.SwitchByActionPoints });
+        var data = new GameStartData(version, boardConfigData, placeablesConfigs, tscConfigData, new List<PlayerData>
+            {
+                GetPlayerData(id: 1, timeSpan: new(), PlacementType.Knight), 
+                GetPlayerData(id: 2, timeSpan: new(), PlacementType.Knight)
+            });
         return data;
     }
 

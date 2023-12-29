@@ -21,7 +21,7 @@ public class JSONSerializationTests
         yield return new object[]
         {
             GetGameStartData(),
-            new JsonConverter[] { new ContentDataConverter(), new TscDataConverter() }
+            new JsonConverter[] { new ContentDataConverter()}
         };
         yield return new object[]
         {
@@ -37,16 +37,6 @@ public class JSONSerializationTests
         {
             GetKnightData(),
             new JsonConverter[] { new ContentDataConverter() }
-        };
-        yield return new object[]
-        {
-            GetTimeConditionData(),
-            new JsonConverter[] { new TscDataConverter() }
-        };
-        yield return new object[]
-        {
-            GetActionPointsConditionData(),
-            new JsonConverter[] { new TscDataConverter() }
         };
     }
 }

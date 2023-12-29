@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="castledice-game-logic" Version="0.0.1-dev1" />
+      <PackageReference Include="castledice-game-logic" Version="0.0.1-dev3" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     </ItemGroup>
 
